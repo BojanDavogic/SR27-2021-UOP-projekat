@@ -4698,16 +4698,17 @@
 									"model": {
 										"$ref": "AAAAAAGAkGLan1GKOVU="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 430,
-									"top": 730,
+									"left": 408,
+									"top": 720,
+									"width": 53.49169921875,
 									"height": 13,
-									"alpha": -0.7853981633974483,
-									"distance": 40,
+									"alpha": 5.488847716448846,
+									"distance": 51.54609587543949,
 									"hostEdge": {
 										"$ref": "AAAAAAGAkGLan1GMQ4g="
-									}
+									},
+									"text": "{ordered}"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7913,7 +7914,8 @@
 									"$ref": "AAAAAAGAkFkymj+vv0U="
 								},
 								"visibility": "protected",
-								"multiplicity": "1..*"
+								"multiplicity": "1..*",
+								"isOrdered": true
 							}
 						}
 					],
