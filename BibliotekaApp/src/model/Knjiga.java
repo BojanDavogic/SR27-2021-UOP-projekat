@@ -6,8 +6,7 @@ import java.util.*;
  * 
  */
 public class Knjiga {
-    public Knjiga() {
-    }
+    
     protected int id;
     protected String naslov;
     protected String originalniNaslov;
@@ -15,11 +14,14 @@ public class Knjiga {
     protected int godinaObjavljivanja;
     protected String opis;
     protected Zanr zanr;
-    protected List<PrimerakKnjige> sviPrimerci;
+    protected ArrayList<PrimerakKnjige> sviPrimerci;
     protected Jezik jezikOriginala;
     
+    public Knjiga() {
+    }
+    
 	public Knjiga(int id, String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis,
-			Zanr zanr, List<PrimerakKnjige> sviPrimerci, Jezik jezikOriginala) {
+			Zanr zanr, ArrayList<PrimerakKnjige> sviPrimerci, Jezik jezikOriginala) {
 		super();
 		this.id = id;
 		this.naslov = naslov;
@@ -88,11 +90,11 @@ public class Knjiga {
 		this.zanr = zanr;
 	}
 
-	public List<PrimerakKnjige> getSviPrimerci() {
+	public ArrayList<PrimerakKnjige> getSviPrimerci() {
 		return sviPrimerci;
 	}
 
-	public void setSviPrimerci(List<PrimerakKnjige> sviPrimerci) {
+	public void setSviPrimerci(ArrayList<PrimerakKnjige> sviPrimerci) {
 		this.sviPrimerci = sviPrimerci;
 	}
 

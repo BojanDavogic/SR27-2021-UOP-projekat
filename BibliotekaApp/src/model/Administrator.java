@@ -17,10 +17,6 @@ public class Administrator extends Zaposleni {
 		return "Administrator [plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", id="
 				+ id + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", pol="
 				+ pol + "]";
-	}
-	
-	
-    
-    
+	}   
 
 }

@@ -1,0 +1,3 @@
+111|Za penzionere|100.00
+112|Za decu do 14 godina|150.00
+113|Standardna clanarina|250.00

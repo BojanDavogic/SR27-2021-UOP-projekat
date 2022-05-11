@@ -4,6 +4,6 @@ package model;
  * 
  */
 public enum TipPoveza {
-    MEKI,
-    TVRDI
+    MEKI, //0
+    TVRDI //1
 }

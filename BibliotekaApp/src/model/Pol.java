@@ -4,6 +4,6 @@ package model;
  * 
  */
 public enum Pol {
-    MUSKI,
-    ZENSKI
+    MUSKI, //0
+    ZENSKI //1
 }
