@@ -18,10 +18,11 @@ public class Knjiga {
     protected Jezik jezikOriginala;
     
     public Knjiga() {
+    	this.sviPrimerci = new ArrayList<>();
     }
     
 	public Knjiga(int id, String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis,
-			Zanr zanr, ArrayList<PrimerakKnjige> sviPrimerci, Jezik jezikOriginala) {
+			Zanr zanr, Jezik jezikOriginala) {
 		super();
 		this.id = id;
 		this.naslov = naslov;
@@ -30,8 +31,8 @@ public class Knjiga {
 		this.godinaObjavljivanja = godinaObjavljivanja;
 		this.opis = opis;
 		this.zanr = zanr;
-		this.sviPrimerci = sviPrimerci;
 		this.jezikOriginala = jezikOriginala;
+		this.sviPrimerci = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -110,11 +111,6 @@ public class Knjiga {
 	public String toString() {
 		return "Knjiga [id=" + id + ", naslov=" + naslov + ", originalniNaslov=" + originalniNaslov + ", pisac=" + pisac
 				+ ", godinaObjavljivanja=" + godinaObjavljivanja + ", opis=" + opis + ", zanr=" + zanr
-				+ ", sviPrimerci=" + sviPrimerci + ", jezikOriginala=" + jezikOriginala + "]";
-	}
-	
-	
-    
-    
-
+				+ ", jezikOriginala=" + jezikOriginala + "]";
+	}	
 }

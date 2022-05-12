@@ -1,2 +1,1 @@
-555|Novela|Novela je kratko prozno delo sazete radnje cija fabula govori o isecku iz necijega zivota.
-666|Roman|Roman je dugacak pripovedni tekst napisan u prozi.
+5|Bajka Test|Test opis

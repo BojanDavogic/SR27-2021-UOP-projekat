@@ -1,18 +1,13 @@
 package model;
 
-import java.util.*;
 public class Zanr {
-	
-	
-    public Zanr() {
-    	this.id = id;
-    	this.oznaka = oznaka;
-    	this.opis = opis;
-    }
     
     protected int id;
     protected String oznaka;
-    protected String opis;
+    protected String opis;	
+	
+    public Zanr() {
+    }
     
 	public Zanr(int id, String oznaka, String opis) {
 		super();

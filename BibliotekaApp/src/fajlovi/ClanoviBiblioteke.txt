@@ -1,3 +1,2 @@
-555|Marko|Markovic|1803001459315|Kralja Petra I 32|0|3c|2022-05-10|3|true|11
-666|Filip|Visnjic|3010996447690|Bulevar Oslobodjenja 65|0|12a|2021-12-20|12|true|22
-777|Marija|Jovanovic|1203999456612|Branka Copica 12|1|12b|2021-06-10|3|false|33
+133|Jovan|Jovanovic|7589557891234|Test Test 22|MUSKI|20d|2022-12-08|3|true|6
+902|Ivan|Ivanovic|4321557891234|Test Test 19|MUSKI|17d|2022-03-15|1|true|6

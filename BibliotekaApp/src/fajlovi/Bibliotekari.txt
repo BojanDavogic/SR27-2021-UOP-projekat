@@ -1,3 +1,5 @@
-365|Milan|Milakovic|0606999123456|Karadjordjeva 5|0|50000|MilanMilakovic|milan123
-366|Aleksandar|Popovic|1212993445586|Dositejeva 16|0|45000|AleksandarPopovic|aco1993
-367|Sandra|Ivkovic|2605001893518|Zemunski kej 54|1|50000|SandraIvkovic|sandrasandra
+998|Milos|Milosevic|1234567894321|Test Test 34|MUSKI|60000.0|MilosMilosevic|milos123
+999|Tanja|Tankosic|1234567894333|Test Test 35|ZENSKI|62000.0|TanjaTankosic|tanja123
+365|Milan|Milakovic|0606999123456|Karadjordjeva 5|MUSKI|50000.0|MilanMilakovic|milan123
+366|Aleksandar|Popovic|1212993445586|Dositejeva 16|MUSKI|45000.0|AleksandarPopovic|aco1993
+367|Sandra|Ivkovic|2605001893518|Zemunski kej 54|ZENSKI|50000.0|SandraIvkovic|sandrasandra

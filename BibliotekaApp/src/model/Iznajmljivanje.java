@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Set;
 public class Iznajmljivanje {
     public Iznajmljivanje() {
@@ -11,17 +12,17 @@ public class Iznajmljivanje {
     protected LocalDate datumVracanja;
     protected Zaposleni zaposleni;
     protected ClanBiblioteke clan;
-    protected Set<PrimerakKnjige> primerak;
+    protected ArrayList<PrimerakKnjige> primerci;
     
 	public Iznajmljivanje(int id, LocalDate datumIznajmljivanja, LocalDate datumVracanja, Zaposleni zaposleni,
-			ClanBiblioteke clan, Set<PrimerakKnjige> primerak) {
+			ClanBiblioteke clan) {
 		super();
 		this.id = id;
 		this.datumIznajmljivanja = datumIznajmljivanja;
 		this.datumVracanja = datumVracanja;
 		this.zaposleni = zaposleni;
 		this.clan = clan;
-		this.primerak = primerak;
+		this.primerci = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -64,18 +65,18 @@ public class Iznajmljivanje {
 		this.clan = clan;
 	}
 
-	public Set<PrimerakKnjige> getPrimerak() {
-		return primerak;
+	public ArrayList<PrimerakKnjige> getPrimerci() {
+		return primerci;
 	}
 
-	public void setPrimerak(Set<PrimerakKnjige> primerak) {
-		this.primerak = primerak;
+	public void setPrimerci(ArrayList<PrimerakKnjige> primerci) {
+		this.primerci = primerci;
 	}
 
 	@Override
 	public String toString() {
 		return "Iznajmljivanje [id=" + id + ", datumIznajmljivanja=" + datumIznajmljivanja + ", datumVracanja="
-				+ datumVracanja + ", zaposleni=" + zaposleni + ", clan=" + clan + ", primerak=" + primerak + "]";
+				+ datumVracanja + ", zaposleni=" + zaposleni + ", clan=" + clan + "]";
 	}
     
     
