@@ -2,17 +2,18 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Set;
+
 public class Iznajmljivanje {
-    public Iznajmljivanje() {
-    }
-    
+       
     protected int id;
     protected LocalDate datumIznajmljivanja;
     protected LocalDate datumVracanja;
     protected Zaposleni zaposleni;
     protected ClanBiblioteke clan;
     protected ArrayList<PrimerakKnjige> primerci;
+    
+    public Iznajmljivanje() {
+    }
     
 	public Iznajmljivanje(int id, LocalDate datumIznajmljivanja, LocalDate datumVracanja, Zaposleni zaposleni,
 			ClanBiblioteke clan) {

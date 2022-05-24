@@ -1,14 +1,13 @@
 package model;
 
-import java.util.*;
-
 public class TipClanarine {
-    public TipClanarine() {
-    }
     
     protected int id;
     protected String naziv;
     protected double cena;
+    
+    public TipClanarine() {
+    }
     
 	public TipClanarine(int id, String naziv, double cena) {
 		super();

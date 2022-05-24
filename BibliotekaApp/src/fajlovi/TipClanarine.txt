@@ -1,6 +1,3 @@
 112|Za decu do 14 godina|150.0
 113|Standardna clanarina|250.0
-4|Test popust|100.0
-5|Test popust|100.0
-6|Standardna|150.0
 111|Za penzionere|100.0

@@ -1,19 +1,17 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.*;
 
-/**
- * 
- */
 public class ClanBiblioteke extends Osoba {
-    public ClanBiblioteke() {
-    }
+    
     protected String brojClanskeKarte;
     protected LocalDate datumPoslednjeUplate;
     protected int unapredUplacenoMeseci;
     protected boolean jeAktivan;
     protected TipClanarine tipClanarine;
+    
+    public ClanBiblioteke() {
+    }
     
 	public ClanBiblioteke(int id, String ime, String prezime, String jMBG, String adresa, Pol pol,
 			String brojClanskeKarte, LocalDate datumPoslednjeUplate, int unapredUplacenoMeseci, boolean jeAktivan,

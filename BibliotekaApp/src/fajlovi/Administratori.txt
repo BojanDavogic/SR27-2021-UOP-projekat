@@ -1,3 +1,3 @@
-988|Marko|Matkovic|1234567891555|Test Test 20|MUSKI|68000.0|MarkoMatkovic|marko1233
-989|Marija|Ivanovic|1234467891555|Test Test 21|ZENSKI|72000.0|MarijaIvanovic|marija12331
-9887|Borko|Borkovic|1234567891234|Test Test 15|MUSKI|65000.0|BorkoBorkovic|borko123
+988|Marko|Matkovic|1234567891555|Kralja Petra I 23|MUSKI|68000.0|MarkoMatkovic|marko1233
+989|Marija|Ivanovic|1234467891555|Rumenacka 35|ZENSKI|72000.0|MarijaIvanovic|marija12331
+9887|Borko|Borkovic|1234567891234|Dositejeva 5|MUSKI|65000.0|BorkoBorkovic|borko123

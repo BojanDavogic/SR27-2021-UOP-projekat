@@ -1,20 +1,16 @@
 package model;
 
-import java.util.*;
-
-/**
- * 
- */
 public abstract class Osoba {
-    public Osoba() {
-    }
-    
+        
     protected int id;
     protected String ime;
     protected String prezime;
     protected String JMBG;
     protected String adresa;
     protected Pol pol;
+    
+    public Osoba() {
+    }
     
 	public Osoba(int id, String ime, String prezime, String jMBG, String adresa, Pol pol) {
 		super();

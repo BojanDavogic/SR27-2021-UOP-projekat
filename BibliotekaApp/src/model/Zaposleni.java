@@ -1,13 +1,13 @@
 package model;
 
-import java.util.*;
 public abstract class Zaposleni extends Osoba {
-    public Zaposleni() {
-    }
-
+    
     protected double plata;
     protected String korisnickoIme;
     protected String lozinka;
+    
+    public Zaposleni() {
+    }
     
 	public Zaposleni(int id, String ime, String prezime, String jMBG, String adresa, Pol pol, double plata,
 			String korisnickoIme, String lozinka) {

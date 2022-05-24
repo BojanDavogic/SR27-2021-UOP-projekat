@@ -1,9 +1,7 @@
 package model;
 
-import java.util.*;
 public class PrimerakKnjige {
-    public PrimerakKnjige() {
-    }
+    
     protected int id;
     protected int brojStrana;
     protected int godinaStampanja;
@@ -11,6 +9,9 @@ public class PrimerakKnjige {
     protected Knjiga knjiga;
     protected TipPoveza tipPoveza;
     protected Jezik jezikStampanja;
+    
+    public PrimerakKnjige() {
+    }
     
 	public PrimerakKnjige(int id, int brojStrana, int godinaStampanja, boolean jeIznajmljena, Knjiga knjiga,
 			TipPoveza tipPoveza, Jezik jezikStampanja) {

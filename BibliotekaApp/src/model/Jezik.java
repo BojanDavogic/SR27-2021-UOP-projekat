@@ -1,8 +1,5 @@
 package model;
 
-/**
- * 
- */
 public enum Jezik {
     SRPSKI, //0
     ENGLESKI, //1

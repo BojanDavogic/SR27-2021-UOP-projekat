@@ -2,9 +2,6 @@ package model;
 
 import java.util.*;
 
-/**
- * 
- */
 public class Knjiga {
     
     protected int id;

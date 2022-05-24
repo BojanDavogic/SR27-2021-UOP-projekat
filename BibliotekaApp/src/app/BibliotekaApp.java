@@ -46,6 +46,20 @@ public class BibliotekaApp {
 		this.iznajmljivanja = new HashMap<Integer, Iznajmljivanje>();
 		this.tipoviClanarine = new HashMap<Integer, TipClanarine>();
 	}
+	
+	public Zaposleni login(String korisnickoIme, String lozinka) {
+		for(Administrator administrator: this.administratori.values()) {
+			if(administrator.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && administrator.getLozinka().equals(lozinka)) {
+				return administrator;
+			}
+		}
+		for(Bibliotekar bibliotekar: this.bibliotekari.values()) {
+			if(bibliotekar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && bibliotekar.getLozinka().equals(lozinka)) {
+				return bibliotekar;
+			}
+		}
+		return null;
+	}
 
 	public void ucitajKnjige() {
 		try {
@@ -150,8 +164,6 @@ public class BibliotekaApp {
 				String prezime = lineSplit[2];
 				String jmbg = lineSplit[3];
 				String adresa = lineSplit[4];
-//				int polInt = Integer.parseInt(lineSplit[5]);
-//				Pol pol = Pol.values()[polInt];
 				Pol pol = Pol.valueOf(lineSplit[5]);
 				double plata = Double.parseDouble(lineSplit[6]);
 				String korisnickoIme = lineSplit[7];
@@ -194,8 +206,6 @@ public class BibliotekaApp {
 				String prezime = lineSplit[2];
 				String jmbg = lineSplit[3];
 				String adresa = lineSplit[4];
-//				int polInt = Integer.parseInt(lineSplit[5]);
-//				Pol pol = Pol.values()[polInt];
 				Pol pol = Pol.valueOf(lineSplit[5]);
 				double plata = Double.parseDouble(lineSplit[6]);
 				String korisnickoIme = lineSplit[7];
@@ -333,14 +343,13 @@ public class BibliotekaApp {
 				ClanBiblioteke clan = this.clanoviBiblioteke.get(clanId);
 				String idPrimerakaStr = lineSplit[5];
 				String[] idPrimeraka = idPrimerakaStr.substring(1, idPrimerakaStr.length() - 1).split(", ");
-				System.out.println(idPrimeraka);
 				
 				Iznajmljivanje iznajmljivanje = new Iznajmljivanje(id, datumIznajmljivanja, datumVracanja, zaposleni, clan);				
 				iznajmljivanja.put(iznajmljivanje.getId(), iznajmljivanje);
 				
 				for(String idP : idPrimeraka) {
 					int intId = Integer.parseInt(idP);
-					PrimerakKnjige pk = this.getPrimerci().get(intId);
+					PrimerakKnjige pk = this.primerci.get(intId);
 					iznajmljivanje.getPrimerci().add(pk);
 				}
 			}
@@ -416,6 +425,10 @@ public class BibliotekaApp {
 		this.zanrovi.put(zanr.getId(), zanr);
 	}
 	
+	public void obrisiZanr(Zanr zanr) {
+		this.zanrovi.remove(zanr.getId(), zanr);
+	}
+	
 	public HashMap<Integer, Knjiga> getKnjige() {
 		return knjige;
 	}
@@ -423,6 +436,10 @@ public class BibliotekaApp {
 	public void dodajKnjigu(Knjiga knjiga) {
 		this.knjige.put(knjiga.getId(), knjiga);
 	}
+	
+	public void obrisiKnjigu(Knjiga knjiga) {
+		this.knjige.remove(knjiga.getId(), knjiga);
+		}
 
 	public HashMap<Integer, PrimerakKnjige> getPrimerci() {
 		return primerci;
@@ -430,6 +447,10 @@ public class BibliotekaApp {
 	
 	public void dodajPrimerak(PrimerakKnjige primerak) {
 		this.primerci.put(primerak.getId(), primerak);
+	}
+	
+	public void obrisiPrimerak(PrimerakKnjige primerak) {
+		this.primerci.remove(primerak.getId(), primerak);
 	}
 
 	public HashMap<Integer, Administrator> getAdministratori() {
@@ -439,6 +460,10 @@ public class BibliotekaApp {
 	public void dodajAdministratora(Administrator administrator) {
 		this.administratori.put(administrator.getId(), administrator);
 	}
+	
+	public void obrisiAdministratora(Administrator administrator) {
+		this.administratori.remove(administrator.getId(), administrator);
+	}
 
 	public HashMap<Integer, Bibliotekar> getBibliotekari() {
 		return bibliotekari;
@@ -446,6 +471,10 @@ public class BibliotekaApp {
 	
 	public void dodajBibliotekara(Bibliotekar bibliotekar) {
 		this.bibliotekari.put(bibliotekar.getId(), bibliotekar);
+	}
+	
+	public void obrisiBibliotekara(Bibliotekar bibliotekar) {
+		this.bibliotekari.remove(bibliotekar.getId(), bibliotekar);
 	}
 
 	public HashMap<Integer, ClanBiblioteke> getClanoviBiblioteke() {
@@ -456,12 +485,20 @@ public class BibliotekaApp {
 		this.clanoviBiblioteke.put(clanBiblioteke.getId(), clanBiblioteke);
 	}
 	
+	public void obrisiClanaBiblioteke(ClanBiblioteke clanBiblioteke) {
+		this.clanoviBiblioteke.remove(clanBiblioteke.getId(), clanBiblioteke);
+	}
+	
 	public HashMap<Integer, Iznajmljivanje> getIznajmljivanje() {
 		return iznajmljivanja;
 	}
 	
 	public void dodajIznajmljivanje(Iznajmljivanje iznajmljivanje) {
 		this.iznajmljivanja.put(iznajmljivanje.getId(), iznajmljivanje);
+	}
+	
+	public void obrisiIznajmljivanje(Iznajmljivanje iznajmljivanje) {
+		this.iznajmljivanja.remove(iznajmljivanje.getId(), iznajmljivanje);
 	}
 
 	public HashMap<Integer, TipClanarine> getTipClanarine() {
@@ -470,6 +507,10 @@ public class BibliotekaApp {
 	
 	public void dodajTipClanarine(TipClanarine tipClanarine) {
 		this.tipoviClanarine.put(tipClanarine.getId(), tipClanarine);
+	}
+	
+	public void obrisiTipClanarine(TipClanarine tipClanarine) {
+		this.tipoviClanarine.remove(tipClanarine.getId(), tipClanarine);
 	}
 
 }

@@ -1,9 +1,9 @@
 package model;
 
 import java.util.*;
+
 public class Biblioteka {
-    public Biblioteka() {
-    }
+    
     protected int id;
     protected String naziv;
     protected String adresa;
@@ -11,6 +11,9 @@ public class Biblioteka {
     protected String radnoVreme;
     protected List<Knjiga> knjige;
     protected List<Osoba> osobe;
+    
+    public Biblioteka() {
+    }
     
 	public Biblioteka(int id, String naziv, String adresa, String telefon, String radnoVreme, List<Knjiga> knjige,
 			List<Osoba> osobe) {
