@@ -1,5 +1,5 @@
-369|My inventions|Moji izumi|Nikola Tesla|1919|Pred citaocem se nalazi knjiga koja na zanimljiv i veoma jednostavan nacin otkriva pojedinosti koje mnogi od nas nisu znali|8|ENGLESKI
-131|Mali princ|Le Petit Prince|Antoan de Sent Egziperi|1943|U svom kratkom letu od asteroida B612 do cudne i njemu strane planete Zemlje mali princ otkriva nekoliko drugih planeta i njihovih stanovnika|5|SRPSKI
-101|Java 8 - Programiranje|Java 8 - Programiranje|Yakov Fain|2015|Java 8 programiranje, prevod drugog izdanja, je vas potpuni vodic za pocetnike Java programskog jezika|9|ENGLESKI
-102|Ilon Mask: Tesla, SpaceX i potraga za fantasticnom buducnoscu|Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future|Esli Vens|2015|Iscrpna prica o coveku koji bi mogao imati najveci uticaj na ljudski rod|9|ENGLESKI
-122|Aschenputtel|Cinderella|Narodna bajka|1910|Pepeljuga je zivela sa macehom i dve zle sestre koje je uopste nisu volele|5|NEMACKI
+369|My inventions|Moji izumi|Nikola Tesla|1919|Pred citaocem se nalazi knjiga koja na zanimljiv i veoma jednostavan nacin otkriva pojedinosti koje mnogi od nas nisu znali|8|ENGLESKI|false
+131|Mali princ|Le Petit Prince|Antoan de Sent Egziperi|1943|U svom kratkom letu od asteroida B612 do cudne i njemu strane planete Zemlje mali princ otkriva nekoliko drugih planeta i njihovih stanovnika|5|SRPSKI|false
+101|Java 8 - Programiranje|Java 8 - Programiranje|Yakov Fain|2015|Java 8 programiranje, prevod drugog izdanja, je vas potpuni vodic za pocetnike Java programskog jezika|9|ENGLESKI|false
+102|Ilon Mask: Tesla, SpaceX i potraga za fantasticnom buducnoscu|Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future|Esli Vens|2015|Iscrpna prica o coveku koji bi mogao imati najveci uticaj na ljudski rod|9|ENGLESKI|false
+122|Aschenputtel|Cinderella|Narodna bajka|1910|Pepeljuga je zivela sa macehom i dve zle sestre koje je uopste nisu volele|5|NEMACKI|false

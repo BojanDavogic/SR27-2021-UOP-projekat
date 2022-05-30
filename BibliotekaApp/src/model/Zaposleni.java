@@ -10,8 +10,8 @@ public abstract class Zaposleni extends Osoba {
     }
     
 	public Zaposleni(int id, String ime, String prezime, String jMBG, String adresa, Pol pol, double plata,
-			String korisnickoIme, String lozinka) {
-		super(id, ime, prezime, jMBG, adresa, pol);
+			String korisnickoIme, String lozinka, boolean obrisan) {
+		super(id, ime, prezime, jMBG, adresa, pol, obrisan);
 		this.plata = plata;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
@@ -43,11 +43,9 @@ public abstract class Zaposleni extends Osoba {
 
 	@Override
 	public String toString() {
-		return "Zaposleni [plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", id=" + id
+		return "Zaposleni [id=" + id
 				+ ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", pol=" + pol
-				+ "]";
+				+ ", plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", obrisan=" + obrisan + "]";
 	}
 
-	
-    
 }

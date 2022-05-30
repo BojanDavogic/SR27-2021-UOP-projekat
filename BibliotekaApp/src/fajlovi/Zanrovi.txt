@@ -1,5 +1,5 @@
-5|Bajka|Bajka je prica u kojoj su radnja i likovi izmisljeni.
-6|Novela|Novela je kratki i zatvoreni prozni oblik koji ima postojaniju strukturu od romana.
-7|Autobiografija|Autobiografija je biografija koja se pise u prvom licu.
-8|Popularna nauka|Popularna nauka (ili pop-nauka) je interpretacija nauke, namenjene siroj javnosti.
-9|Internet i racunari|Ovaj zanr je povezan sa knjigama o svetu racunara i njihovoj sirokoj primeni
+5|Bajka|Bajka je prica u kojoj su radnja i likovi izmisljeni.|false
+6|Novela|Novela je kratki i zatvoreni prozni oblik koji ima postojaniju strukturu od romana.|false
+7|Autobiografija|Autobiografija je biografija koja se pise u prvom licu.|false
+8|Popularna nauka|Popularna nauka (ili pop-nauka) je interpretacija nauke, namenjene siroj javnosti.|false
+9|Internet i racunari|Ovaj zanr je povezan sa knjigama o svetu racunara i njihovoj sirokoj primeni.|false

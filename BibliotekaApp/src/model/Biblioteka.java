@@ -86,10 +86,7 @@ public class Biblioteka {
 	@Override
 	public String toString() {
 		return "Biblioteka [id=" + id + ", naziv=" + naziv + ", adresa=" + adresa + ", telefon=" + telefon
-				+ ", radnoVreme=" + radnoVreme + ", knjige=" + knjige + ", osobe=" + osobe + "]";
+				+ ", radnoVreme=" + radnoVreme + "]";
 	}
-    
 	
-    
-
 }

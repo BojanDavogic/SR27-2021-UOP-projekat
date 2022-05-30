@@ -1,19 +1,7 @@
 package app;
 
-import java.time.LocalDate;
-
 import gui.Login;
-import model.Administrator;
-import model.Bibliotekar;
-import model.ClanBiblioteke;
-import model.Iznajmljivanje;
-import model.Jezik;
-import model.Knjiga;
-import model.Pol;
-import model.PrimerakKnjige;
-import model.TipClanarine;
-import model.TipPoveza;
-import model.Zanr;
+
 
 public class BibliotekaMain {
 	protected static String KNJIGE_FAJL = "Knjige.txt";

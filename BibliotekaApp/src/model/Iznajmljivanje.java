@@ -11,12 +11,13 @@ public class Iznajmljivanje {
     protected Zaposleni zaposleni;
     protected ClanBiblioteke clan;
     protected ArrayList<PrimerakKnjige> primerci;
+    protected boolean obrisano;
     
     public Iznajmljivanje() {
     }
     
 	public Iznajmljivanje(int id, LocalDate datumIznajmljivanja, LocalDate datumVracanja, Zaposleni zaposleni,
-			ClanBiblioteke clan) {
+			ClanBiblioteke clan, boolean obrisano) {
 		super();
 		this.id = id;
 		this.datumIznajmljivanja = datumIznajmljivanja;
@@ -24,6 +25,7 @@ public class Iznajmljivanje {
 		this.zaposleni = zaposleni;
 		this.clan = clan;
 		this.primerci = new ArrayList<>();
+		this.obrisano = obrisano;
 	}
 
 	public int getId() {
@@ -74,12 +76,18 @@ public class Iznajmljivanje {
 		this.primerci = primerci;
 	}
 
+	public boolean isObrisano() {
+		return obrisano;
+	}
+
+	public void setObrisano(boolean obrisano) {
+		this.obrisano = obrisano;
+	}
+
 	@Override
 	public String toString() {
 		return "Iznajmljivanje [id=" + id + ", datumIznajmljivanja=" + datumIznajmljivanja + ", datumVracanja="
-				+ datumVracanja + ", zaposleni=" + zaposleni + ", clan=" + clan + "]";
+				+ datumVracanja + ", zaposleni=" + zaposleni + ", clan=" + clan.getIme() + " " + clan.getPrezime() + ", obrisano=" + obrisano + "]";
 	}
-    
-    
 
 }

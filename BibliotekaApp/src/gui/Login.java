@@ -38,7 +38,7 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		ImageIcon LibraryImage = new ImageIcon("library-logo.png");
+		ImageIcon LibraryImage = new ImageIcon("src/slike/library-logo.png");
 		setIconImage(LibraryImage.getImage());
 		getContentPane().setBackground(new Color(142,104,104));
 		initGUI();
@@ -66,11 +66,13 @@ public class Login extends JFrame {
 		lblPassword.setForeground(new Color(255,255,255));
 		lblPassword.setFont(new Font("Sans Serif", Font.BOLD, 13));
 		
-		Border border = BorderFactory.createLineBorder(Color.black, 1);
-		
 		lblGreeting.setBorder(BorderFactory.createCompoundBorder(
 		        lblGreeting.getBorder(), 
 		        BorderFactory.createEmptyBorder(0, 0, 10, 0)));
+		
+		txtKorisnickoIme.setText("BorkoBorkovic");
+		pfPassword.setText("borko123");
+		getRootPane().setDefaultButton(btnOk);
 		
 	}
 	

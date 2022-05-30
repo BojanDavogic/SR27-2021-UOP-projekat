@@ -15,8 +15,8 @@ public class ClanBiblioteke extends Osoba {
     
 	public ClanBiblioteke(int id, String ime, String prezime, String jMBG, String adresa, Pol pol,
 			String brojClanskeKarte, LocalDate datumPoslednjeUplate, int unapredUplacenoMeseci, boolean jeAktivan,
-			TipClanarine tipClanarine) {
-		super(id, ime, prezime, jMBG, adresa, pol);
+			TipClanarine tipClanarine, boolean obrisan) {
+		super(id, ime, prezime, jMBG, adresa, pol, obrisan);
 		this.brojClanskeKarte = brojClanskeKarte;
 		this.datumPoslednjeUplate = datumPoslednjeUplate;
 		this.unapredUplacenoMeseci = unapredUplacenoMeseci;
@@ -66,12 +66,10 @@ public class ClanBiblioteke extends Osoba {
 
 	@Override
 	public String toString() {
-		return "ClanBiblioteke [brojClanskeKarte=" + brojClanskeKarte + ", datumPoslednjeUplate=" + datumPoslednjeUplate
+		return "ClanBiblioteke [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa="
+				+ adresa + ", pol=" + pol + ", brojClanskeKarte=" + brojClanskeKarte + ", datumPoslednjeUplate=" + datumPoslednjeUplate
 				+ ", unapredUplacenoMeseci=" + unapredUplacenoMeseci + ", jeAktivan=" + jeAktivan + ", tipClanarine="
-				+ tipClanarine + ", id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa="
-				+ adresa + ", pol=" + pol + "]";
+				+ tipClanarine + ", obrisan=" + obrisan + "]";	
 	}
-    
-    
-
+	
 }

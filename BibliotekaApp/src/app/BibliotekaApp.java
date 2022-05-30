@@ -49,16 +49,26 @@ public class BibliotekaApp {
 	
 	public Zaposleni login(String korisnickoIme, String lozinka) {
 		for(Administrator administrator: this.administratori.values()) {
-			if(administrator.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && administrator.getLozinka().equals(lozinka)) {
+			if(administrator.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && administrator.getLozinka().equals(lozinka) && !administrator.isObrisan()) {
 				return administrator;
 			}
 		}
 		for(Bibliotekar bibliotekar: this.bibliotekari.values()) {
-			if(bibliotekar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && bibliotekar.getLozinka().equals(lozinka)) {
+			if(bibliotekar.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && bibliotekar.getLozinka().equals(lozinka) && !bibliotekar.isObrisan()) {
 				return bibliotekar;
 			}
 		}
 		return null;
+	}
+	
+	public HashMap<Integer, Knjiga> sveNeobrisaneKnjige() {
+		HashMap<Integer, Knjiga> neobrisaneKnjige = new HashMap<Integer, Knjiga>();
+		for(Knjiga knjiga : knjige.values()) {
+			if(!knjiga.isObrisana()) {
+				neobrisaneKnjige.put(knjiga.getId(), knjiga);
+			}
+		}
+		return neobrisaneKnjige;
 	}
 
 	public void ucitajKnjige() {
@@ -76,9 +86,10 @@ public class BibliotekaApp {
 				String opis = lineSplit[5];
 				int zanrId = Integer.parseInt(lineSplit[6]);
 				Zanr zanr = this.zanrovi.get(zanrId);			
-				Jezik jezikOriginala = Jezik.valueOf(lineSplit[7]);				
+				Jezik jezikOriginala = Jezik.valueOf(lineSplit[7]);
+				boolean obrisana = Boolean.parseBoolean(lineSplit[8]);				
 				
-				Knjiga knjiga = new Knjiga(id, naslov, originalniNaslov, pisac, godinaObjavljivanja, opis, zanr, jezikOriginala);
+				Knjiga knjiga = new Knjiga(id, naslov, originalniNaslov, pisac, godinaObjavljivanja, opis, zanr, jezikOriginala, obrisana);
 				this.knjige.put(knjiga.getId(), knjiga);
 			}
 			reader.close();
@@ -91,7 +102,7 @@ public class BibliotekaApp {
 		String sadrzaj = "";
 		for (Knjiga knjiga: this.knjige.values()) {
 			sadrzaj += knjiga.getId() + "|" + knjiga.getNaslov() + "|" + knjiga.getOriginalniNaslov() + "|" + knjiga.getPisac() + "|"
-					+ knjiga.getGodinaObjavljivanja() + "|" + knjiga.getOpis() + "|" + knjiga.getZanr().getId() + "|" + knjiga.getJezikOriginala() + "\n";		
+					+ knjiga.getGodinaObjavljivanja() + "|" + knjiga.getOpis() + "|" + knjiga.getZanr().getId() + "|" + knjiga.getJezikOriginala() + "|" + knjiga.isObrisana() + "\n";		
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -127,8 +138,9 @@ public class BibliotekaApp {
 				int id = Integer.parseInt(lineSplit[0]);
 				String oznaka = lineSplit[1];
 				String opis = lineSplit[2];
+				boolean obrisan = Boolean.parseBoolean(lineSplit[3]);
 				
-				Zanr zanr = new Zanr(id, oznaka, opis);				
+				Zanr zanr = new Zanr(id, oznaka, opis, obrisan);				
 				this.zanrovi.put(zanr.getId(), zanr);
 			}
 			reader.close();
@@ -140,7 +152,7 @@ public class BibliotekaApp {
 	public void snimiZanrove(String imeFajla) {
 		String sadrzaj = "";
 		for (Zanr zanr: this.zanrovi.values()) {
-			sadrzaj += zanr.getId() + "|" + zanr.getOznaka() + "|" + zanr.getOpis() + "\n";
+			sadrzaj += zanr.getId() + "|" + zanr.getOznaka() + "|" + zanr.getOpis() + "|" + zanr.isObrisan() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -168,8 +180,9 @@ public class BibliotekaApp {
 				double plata = Double.parseDouble(lineSplit[6]);
 				String korisnickoIme = lineSplit[7];
 				String lozinka = lineSplit[8];
+				boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
 				
-				Administrator administrator = new Administrator(id, ime, prezime, jmbg, adresa, pol, plata, korisnickoIme, lozinka);				
+				Administrator administrator = new Administrator(id, ime, prezime, jmbg, adresa, pol, plata, korisnickoIme, lozinka, obrisan);				
 				this.administratori.put(administrator.getId(), administrator);
 				}
 			reader.close();
@@ -182,7 +195,7 @@ public class BibliotekaApp {
 		String sadrzaj = "";
 		for (Administrator administrator: this.administratori.values()) {
 			sadrzaj += administrator.getId() + "|" + administrator.getIme() + "|" + administrator.getPrezime() + "|" + administrator.getJMBG() + "|" + 
-					administrator.getAdresa() + "|" + administrator.getPol() + "|" + administrator.getPlata() + "|" + administrator.getKorisnickoIme() + "|" + administrator.getLozinka() + "\n";
+					administrator.getAdresa() + "|" + administrator.getPol() + "|" + administrator.getPlata() + "|" + administrator.getKorisnickoIme() + "|" + administrator.getLozinka() + "|" + administrator.isObrisan() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -210,8 +223,9 @@ public class BibliotekaApp {
 				double plata = Double.parseDouble(lineSplit[6]);
 				String korisnickoIme = lineSplit[7];
 				String lozinka = lineSplit[8];
+				boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
 				
-				Bibliotekar bibliotekar = new Bibliotekar(id, ime, prezime, jmbg, adresa, pol, plata, korisnickoIme, lozinka);				
+				Bibliotekar bibliotekar = new Bibliotekar(id, ime, prezime, jmbg, adresa, pol, plata, korisnickoIme, lozinka, obrisan);				
 				bibliotekari.put(bibliotekar.getId(), bibliotekar);
 				}
 			reader.close();
@@ -224,7 +238,7 @@ public class BibliotekaApp {
 		String sadrzaj = "";
 		for (Bibliotekar bibliotekar: this.bibliotekari.values()) {
 			sadrzaj += bibliotekar.getId() + "|" + bibliotekar.getIme() + "|" + bibliotekar.getPrezime() + "|" + bibliotekar.getJMBG() + "|" + 
-					bibliotekar.getAdresa() + "|" + bibliotekar.getPol() + "|" + bibliotekar.getPlata() + "|" + bibliotekar.getKorisnickoIme() + "|" + bibliotekar.getLozinka() + "\n";
+					bibliotekar.getAdresa() + "|" + bibliotekar.getPol() + "|" + bibliotekar.getPlata() + "|" + bibliotekar.getKorisnickoIme() + "|" + bibliotekar.getLozinka() + "|" + bibliotekar.isObrisan() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -251,8 +265,9 @@ public class BibliotekaApp {
 				Jezik jezikStampanja = Jezik.valueOf(lineSplit[5]);
 				int knjigaId = Integer.parseInt(lineSplit[6]);
 				Knjiga knjiga = this.knjige.get(knjigaId);
+				boolean obrisana = Boolean.parseBoolean(lineSplit[7]);
 				
-				PrimerakKnjige primerak = new PrimerakKnjige(id, brojStrana, godinaStampanja, jeIznajmljena, knjiga, tipPoveza, jezikStampanja);				
+				PrimerakKnjige primerak = new PrimerakKnjige(id, brojStrana, godinaStampanja, jeIznajmljena, knjiga, tipPoveza, jezikStampanja, obrisana);				
 				this.primerci.put(primerak.getId(),primerak);
 				knjiga.getSviPrimerci().add(primerak);	// dodajemo primerak u knjigu
 			}
@@ -266,7 +281,7 @@ public class BibliotekaApp {
 		String sadrzaj = "";
 		for (PrimerakKnjige primerakKnjige: this.primerci.values()) {
 			sadrzaj += primerakKnjige.getId() + "|" + primerakKnjige.getBrojStrana() + "|" + primerakKnjige.getGodinaStampanja() + "|" + primerakKnjige.isJeIznajmljena()
-			+ "|" + primerakKnjige.getTipPoveza() + "|" + primerakKnjige.getJezikStampanja() + "|" + primerakKnjige.getKnjiga().getId() + "\n";
+			+ "|" + primerakKnjige.getTipPoveza() + "|" + primerakKnjige.getJezikStampanja() + "|" + primerakKnjige.getKnjiga().getId() + "|" + primerakKnjige.isObrisana() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -297,8 +312,9 @@ public class BibliotekaApp {
 				boolean jeAktivan = Boolean.parseBoolean(lineSplit[9]);
 				int tipClanarineId = Integer.valueOf(lineSplit[10]);
 				TipClanarine tipClanarine = this.tipoviClanarine.get(tipClanarineId);
+				boolean obrisan = Boolean.parseBoolean(lineSplit[11]);
 				
-				ClanBiblioteke clan = new ClanBiblioteke(id, ime, prezime, jmbg, adresa, pol, brojClanskeKarte, datumPoslednjeUplate,unapredUplacenoMeseci, jeAktivan, tipClanarine);
+				ClanBiblioteke clan = new ClanBiblioteke(id, ime, prezime, jmbg, adresa, pol, brojClanskeKarte, datumPoslednjeUplate,unapredUplacenoMeseci, jeAktivan, tipClanarine, obrisan);
 				this.clanoviBiblioteke.put(clan.getId(), clan);
 			}
 			reader.close();
@@ -312,7 +328,7 @@ public class BibliotekaApp {
 		for (ClanBiblioteke clan: this.clanoviBiblioteke.values()) {
 			sadrzaj += clan.getId() + "|" + clan.getIme() + "|" + clan.getPrezime() + "|" + clan.getJMBG() + "|" + clan.getAdresa() + "|" + clan.getPol()
 			 	+ "|" + clan.getBrojClanskeKarte() + "|" + clan.getDatumPoslednjeUplate() + "|" + clan.getUnapredUplacenoMeseci() + "|" + clan.isJeAktivan()
-			 	+ "|" + clan.getTipClanarine().getId() + "\n";
+			 	+ "|" + clan.getTipClanarine().getId() + "|" + clan.isObrisan() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -343,8 +359,9 @@ public class BibliotekaApp {
 				ClanBiblioteke clan = this.clanoviBiblioteke.get(clanId);
 				String idPrimerakaStr = lineSplit[5];
 				String[] idPrimeraka = idPrimerakaStr.substring(1, idPrimerakaStr.length() - 1).split(", ");
+				boolean obrisano = Boolean.parseBoolean(lineSplit[6]);
 				
-				Iznajmljivanje iznajmljivanje = new Iznajmljivanje(id, datumIznajmljivanja, datumVracanja, zaposleni, clan);				
+				Iznajmljivanje iznajmljivanje = new Iznajmljivanje(id, datumIznajmljivanja, datumVracanja, zaposleni, clan, obrisano);				
 				iznajmljivanja.put(iznajmljivanje.getId(), iznajmljivanje);
 				
 				for(String idP : idPrimeraka) {
@@ -368,7 +385,7 @@ public class BibliotekaApp {
 			}
 			
 			sadrzaj += iznajmljivanja.getId() + "|" +iznajmljivanja.getDatumIznajmljivanja() + "|" + iznajmljivanja.getDatumVracanja()
-			+ "|" + iznajmljivanja.getZaposleni().getId() + "|" + iznajmljivanja.getClan().getId() + "|" + idPrimeraka + "\n";
+			+ "|" + iznajmljivanja.getZaposleni().getId() + "|" + iznajmljivanja.getClan().getId() + "|" + idPrimeraka + "|" + iznajmljivanja.isObrisano() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);
@@ -390,9 +407,10 @@ public class BibliotekaApp {
 				int id = Integer.parseInt(lineSplit[0]);
 				String naziv = lineSplit[1];
 				double cena = Double.parseDouble(lineSplit[2]);
+				boolean obrisan = Boolean.parseBoolean(lineSplit[3]);
 				
 				
-				TipClanarine tipClanarine = new TipClanarine(id, naziv, cena);
+				TipClanarine tipClanarine = new TipClanarine(id, naziv, cena, obrisan);
 				
 				tipoviClanarine.put(tipClanarine.getId(), tipClanarine);
 			}
@@ -405,7 +423,7 @@ public class BibliotekaApp {
 	public void snimiTipClanarine(String imeFajla) {
 		String sadrzaj = "";
 		for (TipClanarine tipoviClanarine: this.tipoviClanarine.values()) {
-			sadrzaj += tipoviClanarine.getId() + "|" + tipoviClanarine.getNaziv() + "|" + tipoviClanarine.getCena() + "\n";
+			sadrzaj += tipoviClanarine.getId() + "|" + tipoviClanarine.getNaziv() + "|" + tipoviClanarine.getCena() + "|" + tipoviClanarine.isObrisan() + "\n";
 		}
 		try {
 			File file = new File(FOLDER + imeFajla);

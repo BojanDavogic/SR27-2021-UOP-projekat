@@ -8,11 +8,12 @@ public abstract class Osoba {
     protected String JMBG;
     protected String adresa;
     protected Pol pol;
+    protected boolean obrisan;
     
     public Osoba() {
     }
     
-	public Osoba(int id, String ime, String prezime, String jMBG, String adresa, Pol pol) {
+	public Osoba(int id, String ime, String prezime, String jMBG, String adresa, Pol pol, boolean obrisan) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -20,6 +21,7 @@ public abstract class Osoba {
 		JMBG = jMBG;
 		this.adresa = adresa;
 		this.pol = pol;
+		this.obrisan = obrisan;
 	}
 
 	public int getId() {
@@ -70,11 +72,18 @@ public abstract class Osoba {
 		this.pol = pol;
 	}
 
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+
 	@Override
 	public String toString() {
 		return "Osoba [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa
-				+ ", pol=" + pol + "]";
+				+ ", pol=" + pol + ", obrisan=" + obrisan + "]";
 	}
-
     
 }
