@@ -11,10 +11,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import app.BibliotekaApp;
+import gui.formeZaPrikaz.AdministratoriProzor;
+import gui.formeZaPrikaz.BibliotekariProzor;
+import gui.formeZaPrikaz.ClanoviBibliotekeProzor;
+import gui.formeZaPrikaz.IznajmljivanjaProzor;
 import gui.formeZaPrikaz.KnjigeProzor;
+import gui.formeZaPrikaz.PrimerciKnjigeProzor;
+import gui.formeZaPrikaz.TipClanarineProzor;
+import gui.formeZaPrikaz.ZanroviProzor;
 import model.Zaposleni;
 
 public class GlavniProzor extends JFrame {
+	private static final long serialVersionUID = -5457898115685474680L;
+
 	private JMenuBar mainMenu = new JMenuBar();
 	
 	private JMenu katalogMenu = new JMenu("Katalog");
@@ -76,6 +85,73 @@ public class GlavniProzor extends JFrame {
 				kp.setVisible(true);		
 			}
 		});
+		
+		zanrItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ZanroviProzor zp = new ZanroviProzor(biblioteka);
+				zp.setVisible(true);			
+			}
+		});
+		
+		administratoriItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdministratoriProzor ap = new AdministratoriProzor(biblioteka);
+				ap.setVisible(true);				
+			}
+		});
+		
+		bibliotekariItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
+				bp.setVisible(true);			
+			}
+		});
+		
+		primerciKnjigeItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrimerciKnjigeProzor pkp = new PrimerciKnjigeProzor(biblioteka);
+				pkp.setVisible(true);
+			}
+		});
+			
+		clanoviBibliotekeItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClanoviBibliotekeProzor cbp = new ClanoviBibliotekeProzor(biblioteka);
+				cbp.setVisible(true);
+				
+			}
+		});
+		
+		iznajmljivanjaItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IznajmljivanjaProzor ip = new IznajmljivanjaProzor(biblioteka);
+				ip.setVisible(true);
+				
+			}
+		});
+		
+		tipClanarineItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TipClanarineProzor tcp = new TipClanarineProzor(biblioteka);
+				tcp.setVisible(true);
+				
+			}
+		});
+		
 	}
 	
 }

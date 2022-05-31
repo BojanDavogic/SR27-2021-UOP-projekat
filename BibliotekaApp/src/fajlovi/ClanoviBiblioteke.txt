@@ -1,2 +1,4 @@
 133|Jovan|Jovanovic|7589557891234|Marsilijeva 33|MUSKI|20d|2022-12-08|3|true|113|false
 902|Ivan|Ivanovic|4321557891234|Bulevar oslobodjenja 75|MUSKI|17d|2022-03-15|1|true|113|false
+903|Branka|Brankovic|1803982335579|Branka Radicevica 1|ZENSKI|12a|2022-12-10|6|true|113|false
+904|Maja|Maric|2701014129056|Bulevar Evrope 3|ZENSKI|12b|2022-03-25|12|true|112|false

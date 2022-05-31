@@ -70,6 +70,76 @@ public class BibliotekaApp {
 		}
 		return neobrisaneKnjige;
 	}
+	
+	public HashMap<Integer, Zanr> sviNeobrisaniZanrovi() {
+		HashMap<Integer, Zanr> neobrisaniZanrovi = new HashMap<Integer, Zanr>();
+		for(Zanr zanr : zanrovi.values()) {
+			if(!zanr.isObrisan()) {
+				neobrisaniZanrovi.put(zanr.getId(), zanr);
+			}
+		}
+		return neobrisaniZanrovi;
+	}
+	
+	public HashMap<Integer, Administrator> sviNeobrisaniAdministratori() {
+		HashMap<Integer, Administrator> neobrisaniAdministratori = new HashMap<Integer, Administrator>();
+		for(Administrator administrator : administratori.values()) {
+			if(!administrator.isObrisan()) {
+				neobrisaniAdministratori.put(administrator.getId(), administrator);
+			}
+		}
+		return neobrisaniAdministratori;
+	}
+	
+	public HashMap<Integer, Bibliotekar> sviNeobrisaniBibliotekari() {
+		HashMap<Integer, Bibliotekar> neobrisaniBibliotekari = new HashMap<Integer, Bibliotekar>();
+		for(Bibliotekar bibliotekar : bibliotekari.values()) {
+			if(!bibliotekar.isObrisan()) {
+				neobrisaniBibliotekari.put(bibliotekar.getId(), bibliotekar);
+			}
+		}
+		return neobrisaniBibliotekari;
+	}
+	
+	public HashMap<Integer, PrimerakKnjige> sviNeobrisaniPrimerciKnjige() {
+		HashMap<Integer, PrimerakKnjige> neobrisaniPrimerciKnjige = new HashMap<Integer, PrimerakKnjige>();
+		for(PrimerakKnjige primerak : primerci.values()) {
+			if(!primerak.isObrisana()) {
+				neobrisaniPrimerciKnjige.put(primerak.getId(), primerak);
+			}
+		}
+		return neobrisaniPrimerciKnjige;
+	}
+	
+	public HashMap<Integer, ClanBiblioteke> sviNeobrisaniClanoviBiblioteke() {
+		HashMap<Integer, ClanBiblioteke> neobrisaniClanoviBiblioteke = new HashMap<Integer, ClanBiblioteke>();
+		for(ClanBiblioteke clan : clanoviBiblioteke.values()) {
+			if(!clan.isObrisan()) {
+				neobrisaniClanoviBiblioteke.put(clan.getId(), clan);
+			}
+		}
+		return neobrisaniClanoviBiblioteke;
+	}
+	
+	public HashMap<Integer, Iznajmljivanje> svaNeobrisanaIznajmljivanja() {
+		HashMap<Integer, Iznajmljivanje> neobrisanaIznajmljivanja = new HashMap<Integer, Iznajmljivanje>();
+		for(Iznajmljivanje iznajmljivanje : iznajmljivanja.values()) {
+			if(!iznajmljivanje.isObrisano()) {
+				neobrisanaIznajmljivanja.put(iznajmljivanje.getId(), iznajmljivanje);
+			}
+		}
+		return neobrisanaIznajmljivanja;
+	}
+	
+	public HashMap<Integer, TipClanarine> sviNeobrisaniTipoviClanarine() {
+		HashMap<Integer, TipClanarine> neobrisaniTipoviClanarine = new HashMap<Integer, TipClanarine>();
+		for(TipClanarine tipClanarine : tipoviClanarine.values()) {
+			if(!tipClanarine.isObrisan()) {
+				neobrisaniTipoviClanarine.put(tipClanarine.getId(), tipClanarine);
+			}
+		}
+		return neobrisaniTipoviClanarine;
+	}
 
 	public void ucitajKnjige() {
 		try {

@@ -13,15 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 import app.BibliotekaApp;
 import net.miginfocom.swing.MigLayout;
-
-import model.Biblioteka;
 import model.Zaposleni;
 
 public class Login extends JFrame {
+	private static final long serialVersionUID = -2001737195497686167L;
+	
 	private JLabel lblGreeting = new JLabel("Dobrodosli, molimo Vas da se prijavite.");
 	private JLabel lblUsername = new JLabel("Korisnicko ime");
 	private JTextField txtKorisnickoIme = new JTextField(20);
