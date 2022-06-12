@@ -93,9 +93,10 @@ public class PrimerakKnjige {
 
 	@Override
 	public String toString() {
-		return "PrimerakKnjige [id=" + id + ", brojStrana=" + brojStrana + ", godinaStampanja=" + godinaStampanja
-				+ ", jeIznajmljena=" + jeIznajmljena + ", knjiga=" + knjiga.getNaslov() + ", tipPoveza=" + tipPoveza
-				+ ", jezikStampanja=" + jezikStampanja + ", obrisana=" + obrisana + "]";
+//		return "PrimerakKnjige [id=" + id + ", brojStrana=" + brojStrana + ", godinaStampanja=" + godinaStampanja
+//				+ ", jeIznajmljena=" + jeIznajmljena + ", knjiga=" + knjiga.getNaslov() + ", tipPoveza=" + tipPoveza
+//				+ ", jezikStampanja=" + jezikStampanja + ", obrisana=" + obrisana + "]";
+		return knjiga.getNaslov() + " - ID=" + id;
 	}
 
 }

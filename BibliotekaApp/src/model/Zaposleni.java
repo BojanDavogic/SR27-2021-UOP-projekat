@@ -43,9 +43,10 @@ public abstract class Zaposleni extends Osoba {
 
 	@Override
 	public String toString() {
-		return "Zaposleni [id=" + id
-				+ ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", pol=" + pol
-				+ ", plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", obrisan=" + obrisan + "]";
+//		return "Zaposleni [id=" + id
+//				+ ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", pol=" + pol
+//				+ ", plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", obrisan=" + obrisan + "]";
+		return ime + prezime + " - ID=" + id;
 	}
 
 }

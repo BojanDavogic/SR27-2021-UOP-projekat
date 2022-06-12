@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import app.BibliotekaApp;
 import gui.formeZaPrikaz.AdministratoriProzor;
@@ -43,11 +44,15 @@ public class GlavniProzor extends JFrame {
 	private BibliotekaApp biblioteka;
 	private Zaposleni prijavljeniKorisnik;
 	
+	private String radnoMesto;
+	
 	public GlavniProzor(BibliotekaApp biblioteka, Zaposleni prijavljeniKorisnik) {
 		this.biblioteka = biblioteka;
 		this.prijavljeniKorisnik = prijavljeniKorisnik;
+		radnoMesto = prijavljeniKorisnik.getClass().getSimpleName();
 		
-		setTitle("Zaposleni: " + prijavljeniKorisnik.getKorisnickoIme());
+		
+		setTitle("Zaposleni: " + prijavljeniKorisnik.getKorisnickoIme() + " [" + radnoMesto + "]");
 		setSize(500,500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -77,6 +82,7 @@ public class GlavniProzor extends JFrame {
 	}
 	
 	public void initActions() {
+		radnoMesto = prijavljeniKorisnik.getClass().getSimpleName();
 		knjigeItem.addActionListener(new ActionListener() {
 			
 			@Override
@@ -95,23 +101,77 @@ public class GlavniProzor extends JFrame {
 			}
 		});
 		
-		administratoriItem.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AdministratoriProzor ap = new AdministratoriProzor(biblioteka);
-				ap.setVisible(true);				
-			}
-		});
+//		administratoriItem.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				AdministratoriProzor ap = new AdministratoriProzor(biblioteka);
+//				radnoMesto = prijavljeniKorisnik.getClass().getSimpleName();
+//				if(radnoMesto.equals("Bibliotekar")) {
+//					ap.setVisible(false);
+//				}else{
+//					ap.setVisible(true);				
+//				}
+//			}
+//		});
 		
-		bibliotekariItem.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
-				bp.setVisible(true);			
-			}
-		});
+		if(radnoMesto.equals("Bibliotekar")) {
+			administratoriItem.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					AdministratoriProzor ap = new AdministratoriProzor(biblioteka);
+					ap.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Bibliotekari nemaju pristup administratorima!", "Greska", JOptionPane.ERROR_MESSAGE);
+					
+				}
+			});
+		} else {
+			administratoriItem.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					AdministratoriProzor ap = new AdministratoriProzor(biblioteka);
+						ap.setVisible(true);				
+				}
+			});
+		}
+		
+		if(radnoMesto.equals("Bibliotekar")) {
+			bibliotekariItem.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
+					bp.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Bibliotekari nemaju pristup drugim bibliotekarima!", "Greska", JOptionPane.ERROR_MESSAGE);
+					
+				}
+			});
+		} else {
+			bibliotekariItem.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
+						bp.setVisible(true);				
+				}
+			});
+		}
+		
+//		bibliotekariItem.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
+//				radnoMesto = prijavljeniKorisnik.getClass().getSimpleName();
+//				if(radnoMesto.equals("Bibliotekar")) {
+//					bp.setVisible(false);
+//				}else{
+//					bp.setVisible(true);				
+//				}		
+//			}
+//		});
 		
 		primerciKnjigeItem.addActionListener(new ActionListener() {
 			

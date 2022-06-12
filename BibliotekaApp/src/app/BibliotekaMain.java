@@ -4,14 +4,14 @@ import gui.Login;
 
 
 public class BibliotekaMain {
-	protected static String KNJIGE_FAJL = "Knjige.txt";
-	protected static String ZANROVI_FAJL = "Zanrovi.txt";
-	protected static String ADMINISTRATORI_FAJL = "Administratori.txt";
-	protected static String BIBLIOTEKARI_FAJL = "Bibliotekari.txt";
-	protected static String PRIMERCI_KNJIGE_FAJL = "PrimerciKnjige.txt";
-	protected static String CLANOVI_BIBLIOTEKE_FAJL = "ClanoviBiblioteke.txt";
-	protected static String IZNAJMLJIVANJE_FAJL = "Iznajmljivanje.txt";
-	protected static String TIPOVI_CLANARINE_FAJL = "TipClanarine.txt";
+	public static String KNJIGE_FAJL = "Knjige.txt";
+	public static String ZANROVI_FAJL = "Zanrovi.txt";
+	public static String ADMINISTRATORI_FAJL = "Administratori.txt";
+	public static String BIBLIOTEKARI_FAJL = "Bibliotekari.txt";
+	public static String PRIMERCI_KNJIGE_FAJL = "PrimerciKnjige.txt";
+	public static String CLANOVI_BIBLIOTEKE_FAJL = "ClanoviBiblioteke.txt";
+	public static String IZNAJMLJIVANJE_FAJL = "Iznajmljivanje.txt";
+	public static String TIPOVI_CLANARINE_FAJL = "TipClanarine.txt";
 
 	public static void main(String[] args) {
 		BibliotekaApp biblioteka = new BibliotekaApp();

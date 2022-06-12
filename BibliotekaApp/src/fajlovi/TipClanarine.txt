@@ -1,3 +1,5 @@
 112|Za decu do 14 godina|150.0|false
 113|Standardna clanarina|250.0|false
+114|Test clanarina t|200.0|false
+118|Testovi|350.0|true
 111|Za penzionere|100.0|false

@@ -3,3 +3,5 @@
 7|Autobiografija|Autobiografija je biografija koja se pise u prvom licu.|false
 8|Popularna nauka|Popularna nauka (ili pop-nauka) je interpretacija nauke, namenjene siroj javnosti.|false
 9|Internet i racunari|Ovaj zanr je povezan sa knjigama o svetu racunara i njihovoj sirokoj primeni.|false
+10|Basna|U basnama zivotinje imaju ljudske osobine, govore kao ljudi, ponasaju se kao oni, oslikavaju odnose medju njima.|false
+11|Basna|Basna je basna basna baaasna prijateljstvo moje veliko|true

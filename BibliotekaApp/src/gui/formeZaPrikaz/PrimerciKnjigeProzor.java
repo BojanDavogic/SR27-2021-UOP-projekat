@@ -2,11 +2,14 @@ package gui.formeZaPrikaz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -14,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
+import app.BibliotekaMain;
+import gui.formeZaDodavanjeIzmenu.PrimerciKnjigeForma;
 import model.PrimerakKnjige;
 
 public class PrimerciKnjigeProzor extends JFrame {
@@ -66,7 +71,11 @@ public class PrimerciKnjigeProzor extends JFrame {
 			sadrzaj[red][0] = primerakKnjige.getId();
 			sadrzaj[red][1] = primerakKnjige.getBrojStrana();
 			sadrzaj[red][2] = primerakKnjige.getGodinaStampanja();
-			sadrzaj[red][3] = primerakKnjige.isJeIznajmljena();
+			if(primerakKnjige.isJeIznajmljena()) {
+				sadrzaj[red][3] = "Da";
+			} else {
+				sadrzaj[red][3] = "Ne";
+			}
 			sadrzaj[red][4] = primerakKnjige.getKnjiga().getNaslov();
 			sadrzaj[red][5] = primerakKnjige.getTipPoveza();
 			sadrzaj[red][6] = primerakKnjige.getJezikStampanja();
@@ -88,6 +97,60 @@ public class PrimerciKnjigeProzor extends JFrame {
 	}
 	
 	private void initActions() {
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrimerciKnjigeForma pkf = new PrimerciKnjigeForma(biblioteka, null, tableModel, primerciKnjigeTabela);
+				pkf.setVisible(true);
+				
+			}
+		});
 		
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = primerciKnjigeTabela.getSelectedRow();
+				if(red == -1) {
+					
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da izmenite.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int primerakKnjigeID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					PrimerakKnjige primerakKnjige = biblioteka.pronadjiPrimerak(primerakKnjigeID);
+					
+
+					PrimerciKnjigeForma pkf = new PrimerciKnjigeForma(biblioteka, primerakKnjige,tableModel, primerciKnjigeTabela);
+					pkf.setVisible(true);
+					
+				}
+				
+			}
+		});
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = primerciKnjigeTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da obrisete.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int primerakKnjigeID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					PrimerakKnjige primerakKnjige = biblioteka.pronadjiPrimerak(primerakKnjigeID);
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete primerak knjige?", 
+							primerakKnjigeID + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						primerakKnjige.setObrisana(true);
+						tableModel.removeRow(red);
+						biblioteka.snimiPrimerkeKnjige(BibliotekaMain.PRIMERCI_KNJIGE_FAJL);
+					}
+				}
+				
+			}
+		});
 	}
 }

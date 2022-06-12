@@ -2,11 +2,14 @@ package gui.formeZaPrikaz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -14,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
+import app.BibliotekaMain;
+import gui.formeZaDodavanjeIzmenu.AdministratoriForma;
 import model.Administrator;
 
 public class AdministratoriProzor extends JFrame {
@@ -31,7 +36,7 @@ public class AdministratoriProzor extends JFrame {
 	public AdministratoriProzor(BibliotekaApp biblioteka) {
 		this.biblioteka = biblioteka;
 		setTitle("Administratori");
-		setSize(800, 400);
+		setSize(1000, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		ImageIcon LibraryImage = new ImageIcon("src/slike/library-logo.png");
@@ -89,6 +94,58 @@ public class AdministratoriProzor extends JFrame {
 	}
 	
 	private void initActions() {
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AdministratoriForma af = new AdministratoriForma(biblioteka, null, tableModel, administratoriTabela);
+				af.setVisible(true);
+				
+			}
+		});
 		
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = administratoriTabela.getSelectedRow();
+				if(red == -1) {
+					
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da izmenite.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int administratorID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					Administrator administrator = biblioteka.pronadjiAdministratora(administratorID);
+					
+
+					AdministratoriForma af = new AdministratoriForma(biblioteka, administrator, tableModel, administratoriTabela);
+					af.setVisible(true);
+				}
+			}
+		});
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = administratoriTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da obrisete.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int administratorID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					Administrator administrator = biblioteka.pronadjiAdministratora(administratorID);
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete administratora?", 
+							administratorID + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						administrator.setObrisan(true);
+						tableModel.removeRow(red);
+						biblioteka.snimiAdministratore(BibliotekaMain.ADMINISTRATORI_FAJL);
+					}
+				}
+				
+			}
+		});
 	}
 }

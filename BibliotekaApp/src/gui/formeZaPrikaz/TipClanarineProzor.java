@@ -2,11 +2,14 @@ package gui.formeZaPrikaz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -14,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
+import app.BibliotekaMain;
+import gui.formeZaDodavanjeIzmenu.TipoviClanarineForma;
 import model.TipClanarine;
 
 public class TipClanarineProzor extends JFrame {
@@ -84,6 +89,60 @@ public class TipClanarineProzor extends JFrame {
 	}
 	
 	private void initActions() {
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TipoviClanarineForma tcf = new TipoviClanarineForma(biblioteka, null, tableModel, tipClanarineTabela);
+				tcf.setVisible(true);
+				
+			}
+		});
+		
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = tipClanarineTabela.getSelectedRow();
+				if(red == -1) {
+					
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da izmenite.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int tipClanarineID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					TipClanarine tipClanarine = biblioteka.pronadjiTipClanarine(tipClanarineID);
+					
+
+					TipoviClanarineForma tcf = new TipoviClanarineForma(biblioteka, tipClanarine,tableModel, tipClanarineTabela);
+					tcf.setVisible(true);
+					
+				}
+			}
+		});
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = tipClanarineTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da obrisete.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int tipClanarineID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					TipClanarine tipClanarine = biblioteka.pronadjiTipClanarine(tipClanarineID);
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete tip clanarine?", 
+							tipClanarineID + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						tipClanarine.setObrisan(true);
+						tableModel.removeRow(red);
+						biblioteka.snimiTipClanarine(BibliotekaMain.TIPOVI_CLANARINE_FAJL);
+					}
+				}
+				
+			}
+		});
 		
 	}
 }

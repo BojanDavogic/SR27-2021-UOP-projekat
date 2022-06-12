@@ -52,7 +52,8 @@ public class TipClanarine {
 
 	@Override
 	public String toString() {
-		return "TipClanarine [id=" + id + ", naziv=" + naziv + ", cena=" + cena + ", obrisan=" + obrisan + "]";
+//		return "TipClanarine [id=" + id + ", naziv=" + naziv + ", cena=" + cena + ", obrisan=" + obrisan + "]";
+		return naziv + " - ID=" + id;
 	}
     
     

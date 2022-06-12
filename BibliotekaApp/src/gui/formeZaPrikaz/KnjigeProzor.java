@@ -2,11 +2,14 @@ package gui.formeZaPrikaz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -14,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
+import app.BibliotekaMain;
+import gui.formeZaDodavanjeIzmenu.KnjigeForma;
 import model.Knjiga;
 
 public class KnjigeProzor extends JFrame {
@@ -25,7 +30,7 @@ public class KnjigeProzor extends JFrame {
 	private JButton btnDelete = new JButton();
 	
 	private DefaultTableModel tableModel;
-	private JTable knjigaTabela;
+	private JTable knjigeTabela;
 	
 	private BibliotekaApp biblioteka;
 	
@@ -76,19 +81,73 @@ public class KnjigeProzor extends JFrame {
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
-		knjigaTabela = new JTable(tableModel);
+		knjigeTabela = new JTable(tableModel);
 		
-		knjigaTabela.setRowSelectionAllowed(true);
-		knjigaTabela.setColumnSelectionAllowed(false);
-		knjigaTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		knjigaTabela.setDefaultEditor(Object.class, null);
-		knjigaTabela.getTableHeader().setReorderingAllowed(false);
+		knjigeTabela.setRowSelectionAllowed(true);
+		knjigeTabela.setColumnSelectionAllowed(false);
+		knjigeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		knjigeTabela.setDefaultEditor(Object.class, null);
+		knjigeTabela.getTableHeader().setReorderingAllowed(false);
 		
-		JScrollPane scrollPane = new JScrollPane(knjigaTabela);
+		JScrollPane scrollPane = new JScrollPane(knjigeTabela);
 		add(scrollPane, BorderLayout.CENTER);
 	}
 	
 	private void initActions() {
+		btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				KnjigeForma kf = new KnjigeForma(biblioteka, null, tableModel, knjigeTabela);
+				kf.setVisible(true);
+				
+			}
+		});
 		
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = knjigeTabela.getSelectedRow();
+				if(red == -1) {
+					
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da izmenite.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int knjigeID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					Knjiga knjiga = biblioteka.pronadjiKnjigu(knjigeID);
+					
+
+					KnjigeForma kf = new KnjigeForma(biblioteka, knjiga, tableModel, knjigeTabela);
+					kf.setVisible(true);
+					
+				}
+				
+			}
+		});
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = knjigeTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli koji zelite da obrisete.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int knjigeID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					Knjiga knjiga = biblioteka.pronadjiKnjigu(knjigeID);
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete knjigu?", 
+							knjigeID + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						knjiga.setObrisana(true);
+						tableModel.removeRow(red);
+						biblioteka.snimiKnjige(BibliotekaMain.KNJIGE_FAJL);
+					}
+				}
+				
+			}
+		});
 	}
 }

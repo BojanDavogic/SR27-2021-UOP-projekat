@@ -81,6 +81,21 @@ public class BibliotekaApp {
 		return neobrisaniZanrovi;
 	}
 	
+	public HashMap<Integer, Zaposleni> sviNeobrisaniZaposleni() {
+		HashMap<Integer, Zaposleni> neobrisaniZaposleni = new HashMap<Integer, Zaposleni>();
+		for(Administrator administrator : administratori.values()) {
+			if(!administrator.isObrisan()) {
+				neobrisaniZaposleni.put(administrator.getId(), administrator);
+			}
+		}
+		for(Bibliotekar bibliotekar : bibliotekari.values()) {
+			if(!bibliotekar.isObrisan()) {
+				neobrisaniZaposleni.put(bibliotekar.getId(), bibliotekar);
+			}
+		}
+		return neobrisaniZaposleni;
+	}
+	
 	public HashMap<Integer, Administrator> sviNeobrisaniAdministratori() {
 		HashMap<Integer, Administrator> neobrisaniAdministratori = new HashMap<Integer, Administrator>();
 		for(Administrator administrator : administratori.values()) {
@@ -139,6 +154,87 @@ public class BibliotekaApp {
 			}
 		}
 		return neobrisaniTipoviClanarine;
+	}
+	
+	public Knjiga pronadjiKnjigu(int id) {
+		for (Knjiga knjiga : sveNeobrisaneKnjige().values()) {
+			if(knjiga.getId() == id) {
+				return knjiga;
+			}
+		}
+		return null;
+	}
+	
+	public Zanr pronadjiZanr(int id) {
+		for (Zanr zanr : sviNeobrisaniZanrovi().values()) {
+			if(zanr.getId() == id) {
+				return zanr;
+			}
+		}
+		return null;
+	}
+	
+//	public TipClanarine pronadjiTipClanarine(int id) {
+//		for (TipClanarine tipClanarine : tipoviClanarine.values()) {
+//			if(tipClanarine.getId() == id) {
+//				return tipClanarine;
+//			}
+//		}
+//		return null;
+//	}
+	
+	public TipClanarine pronadjiTipClanarine(int id) {
+		for (TipClanarine tipClanarine : sviNeobrisaniTipoviClanarine().values()) {
+			if(tipClanarine.getId() == id) {
+				return tipClanarine;
+			}
+		}
+		return null;
+	}
+	
+	public Administrator pronadjiAdministratora(int id) {
+		for (Administrator administrator : sviNeobrisaniAdministratori().values()) {
+			if(administrator.getId() == id) {
+				return administrator;
+			}
+		}
+		return null;
+	}
+	
+	public Bibliotekar pronadjiBibliotekara(int id) {
+		for (Bibliotekar bibliotekar : sviNeobrisaniBibliotekari().values()) {
+			if(bibliotekar.getId() == id) {
+				return bibliotekar;
+			}
+		}
+		return null;
+	}
+	
+	public PrimerakKnjige pronadjiPrimerak(int id) {
+		for (PrimerakKnjige primerakKnjige : sviNeobrisaniPrimerciKnjige().values()) {
+			if(primerakKnjige.getId() == id) {
+				return primerakKnjige;
+			}
+		}
+		return null;
+	}
+	
+	public ClanBiblioteke pronadjiClanaBiblioteke(int id) {
+		for (ClanBiblioteke clanBiblioteke : sviNeobrisaniClanoviBiblioteke().values()) {
+			if(clanBiblioteke.getId() == id) {
+				return clanBiblioteke;
+			}
+		}
+		return null;
+	}
+	
+	public Iznajmljivanje pronadjiIznajmljivanje(int id) {
+		for (Iznajmljivanje iznajmljivanje : svaNeobrisanaIznajmljivanja().values()) {
+			if(iznajmljivanje.getId() == id) {
+				return iznajmljivanje;
+			}
+		}
+		return null;
 	}
 
 	public void ucitajKnjige() {
