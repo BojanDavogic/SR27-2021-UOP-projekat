@@ -161,6 +161,11 @@ public class PrimerciKnjigeForma extends JFrame {
 						primerakKnjige.setGodinaStampanja(godinaStampanja);
 						primerakKnjige.setJeIznajmljena(iznajmljena);
 						primerakKnjige.setKnjiga(knjiga);
+						if(mekiPovezButton.isSelected()) {
+							mekiPovezButton.setSelected(true);
+						} else {
+							tvrdiPovezButton.setSelected(true);
+						}
 						primerakKnjige.setTipPoveza(tipPoveza);
 						primerakKnjige.setJezikStampanja(jezikStampanja);
 						int red = primerciKnjigeTabela.getSelectedRow();

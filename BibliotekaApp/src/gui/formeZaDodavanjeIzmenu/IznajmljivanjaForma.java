@@ -3,7 +3,6 @@ package gui.formeZaDodavanjeIzmenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -21,15 +20,9 @@ import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
 import app.BibliotekaMain;
-import gui.formeZaPrikaz.BibliotekariProzor;
-import model.Administrator;
-import model.Bibliotekar;
 import model.ClanBiblioteke;
 import model.Iznajmljivanje;
-import model.Knjiga;
 import model.PrimerakKnjige;
-import model.TipClanarine;
-import model.Zanr;
 import model.Zaposleni;
 import net.miginfocom.swing.MigLayout;
 
@@ -56,7 +49,6 @@ public class IznajmljivanjaForma extends JFrame {
 	private BibliotekaApp biblioteka;
 	private DefaultTableModel tableModel;
 	private JTable iznajmljivanjeTabela;
-	private HashMap<Integer, PrimerakKnjige> primerci;
 	
 	
 	public IznajmljivanjaForma(BibliotekaApp biblioteka, Iznajmljivanje iznajmljivanje, DefaultTableModel tableModel, JTable iznajmljivanjeTabela) {
@@ -127,28 +119,19 @@ public class IznajmljivanjaForma extends JFrame {
 					LocalDate datumIznajmljivanja = LocalDate.parse(txtDatumIznajmljivanja.getText().trim());
 					LocalDate datumVracanja = LocalDate.parse(txtDatumVracanja.getText().trim());
 					
-					String stringPrimerci = "";
+					HashMap<Integer, PrimerakKnjige> primerci = biblioteka.sviNeobrisaniPrimerciKnjige();
+					
 					List<PrimerakKnjige> selectedPrimerci = listaPrimeraka.getSelectedValuesList();
-					for(PrimerakKnjige primerak: selectedPrimerci) {
-						stringPrimerci += primerak + "; ";
-					}
-					System.out.println(stringPrimerci);
-					
-					
-//					ArrayList<Integer> strPrimerci = new ArrayList<>();
-//					
-////					String listaPrimeraka = "";
-//					
-//					List<PrimerakKnjige> selectedPrimerci = listaPrimeraka.getSelectedValuesList();
-//					for(PrimerakKnjige primerak: selectedPrimerci) {
-//						strPrimerci.add(primerak.getId());
-//						
-//					}
-//					for(int sviPrimerci: strPrimerci) {
-//						PrimerakKnjige pk = primerci.get(sviPrimerci);
-//						iznajmljivanje.getPrimerci().add(pk);
-//					}
-					
+					for(PrimerakKnjige selectedPrimerak : selectedPrimerci) {
+						PrimerakKnjige primerak = primerci.get(selectedPrimerak.getId());
+						selectedPrimerak.setBrojStrana(primerak.getBrojStrana());
+						selectedPrimerak.setGodinaStampanja(primerak.getGodinaStampanja());
+						selectedPrimerak.setJeIznajmljena(primerak.isJeIznajmljena());
+						selectedPrimerak.setJezikStampanja(primerak.getJezikStampanja());
+						selectedPrimerak.setKnjiga(primerak.getKnjiga());
+						selectedPrimerak.setObrisana(primerak.isObrisana());
+						selectedPrimerak.setTipPoveza(primerak.getTipPoveza());
+					}					
 					
 					HashMap<Integer, Zaposleni> sviZaposleni = biblioteka.sviNeobrisaniZaposleni();
 					Zaposleni zaposleni = (Zaposleni)comboBoxZaposleni.getSelectedItem();
@@ -160,6 +143,7 @@ public class IznajmljivanjaForma extends JFrame {
 					
 					if(iznajmljivanje == null) {
 						iznajmljivanje = new Iznajmljivanje(id, datumIznajmljivanja, datumVracanja, zaposleni, clan, false);
+						iznajmljivanje.setPrimerci(selectedPrimerci);
 						
 						biblioteka.dodajIznajmljivanje(iznajmljivanje);
 						Object[] red = kreirajRedTabele(iznajmljivanje);
@@ -167,7 +151,7 @@ public class IznajmljivanjaForma extends JFrame {
 					} else {
 						iznajmljivanje.setDatumIznajmljivanja(datumIznajmljivanja);
 						iznajmljivanje.setDatumVracanja(datumVracanja);
-//						iznajmljivanje.setPrimerci(primerci);
+						iznajmljivanje.setPrimerci(selectedPrimerci);
 						iznajmljivanje.setZaposleni(zaposleni);
 						iznajmljivanje.setClan(clan);
 						
@@ -242,12 +226,7 @@ public class IznajmljivanjaForma extends JFrame {
 		red[0] = iznajmljivanje.getId();
 		red[1] = iznajmljivanje.getDatumIznajmljivanja();
 		red[2] = iznajmljivanje.getDatumVracanja();
-		String strPrimerci = "";
-		List<PrimerakKnjige> selectedPrimerci = listaPrimeraka.getSelectedValuesList();
-		for(PrimerakKnjige primerak: selectedPrimerci) {
-			strPrimerci += primerak + "; ";
-		}
-		red[3] = strPrimerci;
+		red[3] = getPrimerciString(iznajmljivanje);
 		red[4] = iznajmljivanje.getZaposleni().getIme() + " " + iznajmljivanje.getZaposleni().getPrezime();
 		red[5] = iznajmljivanje.getClan().getIme() + " " + iznajmljivanje.getClan().getPrezime();
 		
@@ -259,10 +238,19 @@ public class IznajmljivanjaForma extends JFrame {
 				tableModel.setValueAt(iznajmljivanje.getId(), red, 0);
 				tableModel.setValueAt(iznajmljivanje.getDatumIznajmljivanja(), red, 1);
 				tableModel.setValueAt(iznajmljivanje.getDatumVracanja(), red, 2);
-				tableModel.setValueAt(iznajmljivanje.getPrimerci(), red, 3);
+				tableModel.setValueAt(getPrimerciString(iznajmljivanje), red, 3);
 				tableModel.setValueAt(iznajmljivanje.getZaposleni().getIme() + " " + iznajmljivanje.getZaposleni().getPrezime(), red, 4);	
 				tableModel.setValueAt(iznajmljivanje.getClan().getIme() + " " + iznajmljivanje.getClan().getPrezime(), red, 5);
 				
 			}
+	}
+	
+	private String getPrimerciString(Iznajmljivanje iznajmljivanje) {
+		String txtPrimerci = "";
+		for (PrimerakKnjige primerak : iznajmljivanje.getPrimerci()) {
+			txtPrimerci += primerak.getKnjiga().getNaslov() + "; ";
+		}
+		
+		return txtPrimerci;
 	}
 }

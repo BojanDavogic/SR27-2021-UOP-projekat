@@ -70,7 +70,7 @@ public class ClanBiblioteke extends Osoba {
 //				+ adresa + ", pol=" + pol + ", brojClanskeKarte=" + brojClanskeKarte + ", datumPoslednjeUplate=" + datumPoslednjeUplate
 //				+ ", unapredUplacenoMeseci=" + unapredUplacenoMeseci + ", jeAktivan=" + jeAktivan + ", tipClanarine="
 //				+ tipClanarine + ", obrisan=" + obrisan + "]";
-		return ime + prezime + " - ID=" + id;
+		return ime + " " + prezime + " - ID=" + id;
 	}
 	
 }

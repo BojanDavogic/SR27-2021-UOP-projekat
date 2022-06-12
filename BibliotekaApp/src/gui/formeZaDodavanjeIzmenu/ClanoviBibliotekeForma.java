@@ -61,7 +61,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 	private DefaultTableModel tableModel;
 	private JTable clanoviBibliotekeTabela;
 	
-	
 	public ClanoviBibliotekeForma(BibliotekaApp biblioteka, ClanBiblioteke clanBiblioteke, DefaultTableModel tableModel, JTable clanoviBibliotekeTabela) {
 		this.biblioteka = biblioteka;
 		this.clanBiblioteke = clanBiblioteke;
@@ -124,6 +123,10 @@ public class ClanoviBibliotekeForma extends JFrame {
 		grupa.add(radiobuttonMuski);
 		grupa.add(radiobuttonZenski);
 		radiobuttonMuski.setSelected(true);
+
+		txtDatumPoslednjeUplate.setEditable(false);
+		txtUnapredUplacenoMeseci.setEditable(false);
+		cbAktivan.setEnabled(false);
 		
 	}
 	
@@ -144,8 +147,8 @@ public class ClanoviBibliotekeForma extends JFrame {
 						pol = Pol.ZENSKI;
 					}
 					String brojClanskeKarte = txtBrojClanskeKarte.getText().trim();
-					LocalDate datumPoslednjeUplate = LocalDate.parse(txtDatumPoslednjeUplate.getText().trim());
-					int unapredUplacenoMeseci = Integer.parseInt(txtUnapredUplacenoMeseci.getText().trim());
+					LocalDate datumPoslednjeUplate = LocalDate.parse("1111-11-11");
+					int unapredUplacenoMeseci = 0;
 					boolean jeAktivan = false;
 					if(cbAktivan.isSelected()) {
 						jeAktivan = true;

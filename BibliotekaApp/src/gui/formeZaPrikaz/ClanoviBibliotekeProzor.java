@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import app.BibliotekaApp;
 import app.BibliotekaMain;
 import gui.formeZaDodavanjeIzmenu.ClanoviBibliotekeForma;
+import gui.formeZaDodavanjeIzmenu.UplataClanarineForma;
 import model.ClanBiblioteke;
 
 public class ClanoviBibliotekeProzor extends JFrame {
@@ -168,6 +169,28 @@ public class ClanoviBibliotekeProzor extends JFrame {
 						biblioteka.snimiClanoveBiblioteke(BibliotekaMain.CLANOVI_BIBLIOTEKE_FAJL);
 					}
 				}
+				
+			}
+		});
+		btnPay.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = clanoviBibliotekeTabela.getSelectedRow();
+				if(red == -1) {
+					
+					JOptionPane.showMessageDialog(null, "Molimo odaberite red u tabeli kojem zelite da uplatite clanarinu.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int clanID = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					ClanBiblioteke clanBiblioteke = biblioteka.pronadjiClanaBiblioteke(clanID);
+					
+
+					UplataClanarineForma ucf = new UplataClanarineForma(biblioteka, clanBiblioteke, tableModel, clanoviBibliotekeTabela);
+					ucf.setVisible(true);
+					
+				}
+				
 				
 			}
 		});

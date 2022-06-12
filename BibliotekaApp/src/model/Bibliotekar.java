@@ -15,7 +15,7 @@ public class Bibliotekar extends Zaposleni {
 //		return "Bibliotekar [id="
 //				+ id + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", pol="
 //				+ pol + ", plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", obrisan=" + obrisan + "]";
-		return "[Bibliotekar] " + ime + prezime + " - ID=" + id;
+		return ime + " " + prezime + " [B] - ID=" + id;
 	}
 	
 }

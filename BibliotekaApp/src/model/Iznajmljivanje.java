@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Iznajmljivanje {
        
@@ -10,7 +11,7 @@ public class Iznajmljivanje {
     protected LocalDate datumVracanja;
     protected Zaposleni zaposleni;
     protected ClanBiblioteke clan;
-    protected ArrayList<PrimerakKnjige> primerci;
+    protected List<PrimerakKnjige> primerci;
     protected boolean obrisano;
     
     public Iznajmljivanje() {
@@ -68,11 +69,11 @@ public class Iznajmljivanje {
 		this.clan = clan;
 	}
 
-	public ArrayList<PrimerakKnjige> getPrimerci() {
+	public List<PrimerakKnjige> getPrimerci() {
 		return primerci;
 	}
 
-	public void setPrimerci(ArrayList<PrimerakKnjige> primerci) {
+	public void setPrimerci(List<PrimerakKnjige> primerci) {
 		this.primerci = primerci;
 	}
 

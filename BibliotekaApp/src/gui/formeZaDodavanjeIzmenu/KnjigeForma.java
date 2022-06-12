@@ -175,7 +175,8 @@ public class KnjigeForma extends JFrame {
 		if(txtID.getText().trim().equals("")) {
 			poruka += "- Morate uneti ID\n";
 			ok = false;
-		} else if(knjiga == null) {
+		}
+		else if(knjiga == null) {
 			int id = Integer.parseInt(txtID.getText().trim());
 			Knjiga pronadjena = biblioteka.pronadjiKnjigu(id);
 			if(pronadjena != null) {
@@ -199,12 +200,19 @@ public class KnjigeForma extends JFrame {
 			ok = false;
 		}
 		
-		try {
-			Integer.parseInt(txtGodinaObjavljivanja.getText().trim());
-		} catch (NumberFormatException e) {
-			poruka += "- Godina objavljivanja mora biti broj\n";
+		if(txtGodinaObjavljivanja.getText().equals("")) {
+			poruka += "- Morate uneti godinu objavljivanja\n";
 			ok = false;
+		} else {
+			try {
+				Integer.parseInt(txtGodinaObjavljivanja.getText().trim());
+			} catch (NumberFormatException e) {
+				poruka += "- Godina objavljivanja mora biti broj\n";
+				ok = false;
+			}
 		}
+		
+		
 		
 		if(txtAreaOpis.getText().trim().equals("")) {
 			poruka += "- Morate uneti opis\n";

@@ -14,7 +14,7 @@ public class Administrator extends Zaposleni {
 	public String toString() {
 //		return "Administrator [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", pol="
 //				+ pol + ", plata=" + plata + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", obrisan=" + obrisan + "]";
-		return "[Administrator] " + ime + prezime + " - ID=" + id; 
+		return ime + " " + prezime + " [A] - ID=" + id;
 	}
 
 }

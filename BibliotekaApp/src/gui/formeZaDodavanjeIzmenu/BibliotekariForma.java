@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
 import app.BibliotekaMain;
-import model.Administrator;
 import model.Bibliotekar;
 import model.Pol;
 import net.miginfocom.swing.MigLayout;
