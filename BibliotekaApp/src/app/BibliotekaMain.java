@@ -1,6 +1,7 @@
 package app;
 
 import gui.Login;
+import gui.PocetniProzor;
 
 
 public class BibliotekaMain {
@@ -12,6 +13,7 @@ public class BibliotekaMain {
 	public static String CLANOVI_BIBLIOTEKE_FAJL = "ClanoviBiblioteke.txt";
 	public static String IZNAJMLJIVANJE_FAJL = "Iznajmljivanje.txt";
 	public static String TIPOVI_CLANARINE_FAJL = "TipClanarine.txt";
+	public static String BIBLIOTEKA_FAJL = "Biblioteka.txt";
 
 	public static void main(String[] args) {
 		BibliotekaApp biblioteka = new BibliotekaApp();
@@ -24,9 +26,10 @@ public class BibliotekaMain {
 		biblioteka.ucitajTipClanarine();
 		biblioteka.ucitajClanoveBiblioteke();
 		biblioteka.ucitajIznajmljivanje();
+		biblioteka.ucitajBiblioteku();
 		
-		Login login = new Login(biblioteka);
-		login.setVisible(true);
+		PocetniProzor pp = new PocetniProzor(biblioteka);
+		pp.setVisible(true);
 	}
 
 }

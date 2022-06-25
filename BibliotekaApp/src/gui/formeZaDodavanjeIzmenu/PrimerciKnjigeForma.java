@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,9 +32,6 @@ public class PrimerciKnjigeForma extends JFrame {
 	private JTextField txtBrojStrana = new JTextField(20);
 	private JLabel lblGodinaStampanja = new JLabel("Godina stampanja");
 	private JTextField txtGodinaStampanja = new JTextField(20);
-	
-	private JLabel lblIznajmljena = new JLabel("Iznajmljena");
-	private JCheckBox cbIznajmljena = new JCheckBox("Iznajmljena");
 	
 	private JLabel lblKnjiga = new JLabel("Knjiga");
 	private JComboBox<Knjiga> comboBoxKnjiga;
@@ -95,8 +91,6 @@ public class PrimerciKnjigeForma extends JFrame {
 		add(txtBrojStrana);
 		add(lblGodinaStampanja);
 		add(txtGodinaStampanja);
-		add(lblIznajmljena);
-		add(cbIznajmljena);
 		add(lblKnjiga);
 		add(comboBoxKnjiga);
 		add(lblTipPoveza);
@@ -126,9 +120,6 @@ public class PrimerciKnjigeForma extends JFrame {
 					int brojStrana = Integer.parseInt(txtBrojStrana.getText().trim());
 					int godinaStampanja = Integer.parseInt(txtGodinaStampanja.getText().trim());
 					boolean iznajmljena = false;
-					if (cbIznajmljena.isSelected()) {
-						iznajmljena = true;
-					}
 					
 					HashMap<Integer, Knjiga> knjige = biblioteka.sveNeobrisaneKnjige();
 					
@@ -240,11 +231,6 @@ public class PrimerciKnjigeForma extends JFrame {
 		txtID.setText(String.valueOf(primerakKnjige.getId()));
 		txtBrojStrana.setText(String.valueOf(primerakKnjige.getBrojStrana()));
 		txtGodinaStampanja.setText(String.valueOf(primerakKnjige.getGodinaStampanja()));
-		if(primerakKnjige.isJeIznajmljena()) {
-			cbIznajmljena.setSelected(true);
-		} else {
-			cbIznajmljena.setSelected(false);
-		}
 		comboBoxKnjiga.setSelectedItem(primerakKnjige.getKnjiga());
 		if (primerakKnjige.getTipPoveza().equals(TipPoveza.MEKI)) {
 			mekiPovezButton.setSelected(true);

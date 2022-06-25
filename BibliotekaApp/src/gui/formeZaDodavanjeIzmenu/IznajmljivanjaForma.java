@@ -35,7 +35,7 @@ public class IznajmljivanjaForma extends JFrame {
 	private JTextField txtDatumIznajmljivanja = new JTextField(20);
 	private JLabel lblDatumVracanja = new JLabel("Datum vracanja");
 	private JTextField txtDatumVracanja = new JTextField(20);
-	private JLabel lblPrimerci = new JLabel("Primerci");
+	private JLabel lblPrimerci = new JLabel("Dostupni primerci");
 	private JList<PrimerakKnjige> listaPrimeraka;
 	private JLabel lblZaposleni = new JLabel("Zaposleni");
 	private JComboBox<Zaposleni> comboBoxZaposleni;
@@ -49,6 +49,7 @@ public class IznajmljivanjaForma extends JFrame {
 	private BibliotekaApp biblioteka;
 	private DefaultTableModel tableModel;
 	private JTable iznajmljivanjeTabela;
+	private PrimerakKnjige primerakKnjige;
 	
 	
 	public IznajmljivanjaForma(BibliotekaApp biblioteka, Iznajmljivanje iznajmljivanje, DefaultTableModel tableModel, JTable iznajmljivanjeTabela) {
@@ -57,7 +58,7 @@ public class IznajmljivanjaForma extends JFrame {
 		this.tableModel = tableModel;
 		this.iznajmljivanjeTabela = iznajmljivanjeTabela;
 		
-		Collection<PrimerakKnjige> primerci = biblioteka.sviNeobrisaniPrimerciKnjige().values();
+		Collection<PrimerakKnjige> primerci = biblioteka.sviNeiznajmljeniPrimerciKnjige().values();
 		this.listaPrimeraka = new JList<PrimerakKnjige>(primerci.toArray(new PrimerakKnjige[0]));
 		listaPrimeraka.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
@@ -119,7 +120,7 @@ public class IznajmljivanjaForma extends JFrame {
 					LocalDate datumIznajmljivanja = LocalDate.parse(txtDatumIznajmljivanja.getText().trim());
 					LocalDate datumVracanja = LocalDate.parse(txtDatumVracanja.getText().trim());
 					
-					HashMap<Integer, PrimerakKnjige> primerci = biblioteka.sviNeobrisaniPrimerciKnjige();
+					HashMap<Integer, PrimerakKnjige> primerci = biblioteka.sviNeiznajmljeniPrimerciKnjige();
 					
 					List<PrimerakKnjige> selectedPrimerci = listaPrimeraka.getSelectedValuesList();
 					for(PrimerakKnjige selectedPrimerak : selectedPrimerci) {
@@ -144,6 +145,13 @@ public class IznajmljivanjaForma extends JFrame {
 					if(iznajmljivanje == null) {
 						iznajmljivanje = new Iznajmljivanje(id, datumIznajmljivanja, datumVracanja, zaposleni, clan, false);
 						iznajmljivanje.setPrimerci(selectedPrimerci);
+						for(PrimerakKnjige primerak: selectedPrimerci) {
+							primerak.setJeIznajmljena(true);
+//							if(primerakKnjige.getId() == primerak.getId()) {
+//								primerakKnjige.setJeIznajmljena(true);
+//							}
+						}
+						biblioteka.snimiPrimerkeKnjige(BibliotekaMain.PRIMERCI_KNJIGE_FAJL);
 						
 						biblioteka.dodajIznajmljivanje(iznajmljivanje);
 						Object[] red = kreirajRedTabele(iznajmljivanje);

@@ -9,22 +9,17 @@ public class Biblioteka {
     protected String adresa;
     protected String telefon;
     protected String radnoVreme;
-    protected List<Knjiga> knjige;
-    protected List<Osoba> osobe;
     
     public Biblioteka() {
     }
     
-	public Biblioteka(int id, String naziv, String adresa, String telefon, String radnoVreme, List<Knjiga> knjige,
-			List<Osoba> osobe) {
+	public Biblioteka(int id, String naziv, String adresa, String telefon, String radnoVreme) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.telefon = telefon;
 		this.radnoVreme = radnoVreme;
-		this.knjige = knjige;
-		this.osobe = osobe;
 	}
 
 	public int getId() {
@@ -65,22 +60,6 @@ public class Biblioteka {
 
 	public void setRadnoVreme(String radnoVreme) {
 		this.radnoVreme = radnoVreme;
-	}
-
-	public List<Knjiga> getKnjige() {
-		return knjige;
-	}
-
-	public void setKnjige(List<Knjiga> knjige) {
-		this.knjige = knjige;
-	}
-
-	public List<Osoba> getOsobe() {
-		return osobe;
-	}
-
-	public void setOsobe(List<Osoba> osobe) {
-		this.osobe = osobe;
 	}
 
 	@Override

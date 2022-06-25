@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import app.BibliotekaApp;
 import gui.formeZaPrikaz.AdministratoriProzor;
+import gui.formeZaPrikaz.BibliotekaProzor;
 import gui.formeZaPrikaz.BibliotekariProzor;
 import gui.formeZaPrikaz.ClanoviBibliotekeProzor;
 import gui.formeZaPrikaz.IznajmljivanjaProzor;
@@ -40,6 +41,9 @@ public class GlavniProzor extends JFrame {
 	
 	private JMenu clanoviMenu = new JMenu("Clanovi");
 	private JMenuItem clanoviBibliotekeItem = new JMenuItem("Clanovi biblioteke");
+	
+	private JMenu bibliotekaMenu = new JMenu("Biblioteka");
+	private JMenuItem bibliotekaItem = new JMenuItem("Podaci o biblioteci");
 	
 	private BibliotekaApp biblioteka;
 	private Zaposleni prijavljeniKorisnik;
@@ -79,6 +83,9 @@ public class GlavniProzor extends JFrame {
 		
 		mainMenu.add(clanoviMenu);
 		clanoviMenu.add(clanoviBibliotekeItem);
+		
+		mainMenu.add(bibliotekaMenu);
+		bibliotekaMenu.add(bibliotekaItem);
 	}
 	
 	public void initActions() {
@@ -159,20 +166,6 @@ public class GlavniProzor extends JFrame {
 			});
 		}
 		
-//		bibliotekariItem.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
-//				radnoMesto = prijavljeniKorisnik.getClass().getSimpleName();
-//				if(radnoMesto.equals("Bibliotekar")) {
-//					bp.setVisible(false);
-//				}else{
-//					bp.setVisible(true);				
-//				}		
-//			}
-//		});
-		
 		primerciKnjigeItem.addActionListener(new ActionListener() {
 			
 			@Override
@@ -208,6 +201,16 @@ public class GlavniProzor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TipClanarineProzor tcp = new TipClanarineProzor(biblioteka);
 				tcp.setVisible(true);
+				
+			}
+		});
+		
+		bibliotekaItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BibliotekaProzor bp = new BibliotekaProzor(biblioteka, biblioteka.pronadjiBiblioteku(1));
+				bp.setVisible(true);
 				
 			}
 		});

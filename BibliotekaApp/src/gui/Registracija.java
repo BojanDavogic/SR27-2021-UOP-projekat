@@ -1,32 +1,36 @@
-package gui.formeZaDodavanjeIzmenu;
+package gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
 import app.BibliotekaMain;
+import gui.formeZaDodavanjeIzmenu.ClanoviBibliotekeForma;
 import model.ClanBiblioteke;
 import model.Pol;
 import model.TipClanarine;
+import model.Zaposleni;
 import net.miginfocom.swing.MigLayout;
 
-public class ClanoviBibliotekeForma extends JFrame {
-	private static final long serialVersionUID = -8317382211350569648L;
+public class Registracija extends JFrame {
+	private static final long serialVersionUID = -5469244757196123605L;
 	private JLabel lblID = new JLabel("ID");
 	private JTextField txtID = new JTextField(20);
 	private JLabel lblIme = new JLabel("Ime");
@@ -43,49 +47,36 @@ public class ClanoviBibliotekeForma extends JFrame {
 	private ButtonGroup grupa = new ButtonGroup();
 	private JLabel lblBrojClanskeKarte = new JLabel("Broj clanske karte");
 	private JTextField txtBrojClanskeKarte = new JTextField(20);
-	
 	private JLabel lblTipClanarine = new JLabel("Tip clanarine");
 	private JComboBox<TipClanarine> comboBoxTipClanarine;
-	
-	private JButton btnOK = new JButton("OK");
+	private JButton btnOk = new JButton("OK");
 	private JButton btnCancel = new JButton("Cancel");
 	
-	private ClanBiblioteke clanBiblioteke;
 	private BibliotekaApp biblioteka;
-	private DefaultTableModel tableModel;
-	private JTable clanoviBibliotekeTabela;
+	private ClanBiblioteke clanBiblioteke;
 	
-	public ClanoviBibliotekeForma(BibliotekaApp biblioteka, ClanBiblioteke clanBiblioteke, DefaultTableModel tableModel, JTable clanoviBibliotekeTabela) {
+	public Registracija(BibliotekaApp biblioteka, ClanBiblioteke clanBiblioteke) {
 		this.biblioteka = biblioteka;
 		this.clanBiblioteke = clanBiblioteke;
-		this.tableModel = tableModel;
-		this.clanoviBibliotekeTabela = clanoviBibliotekeTabela;
 		
 		Collection<TipClanarine> tipoviClanarine = biblioteka.sviNeobrisaniTipoviClanarine().values();
 		this.comboBoxTipClanarine = new JComboBox<TipClanarine>(tipoviClanarine.toArray(new TipClanarine[0]));
 		
-		if(clanBiblioteke == null) {
-			setTitle("Dodavanje clana biblioteke");
-		} else {
-			setTitle("Izmena podataka - " + clanBiblioteke.getId());
-		}
-		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Registracija");
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setResizable(false);
+		ImageIcon LibraryImage = new ImageIcon("src/slike/library-logo.png");
+		setIconImage(LibraryImage.getImage());
+		getContentPane().setBackground(new Color(142,104,104));
 		initGUI();
 		initActions();
-		setResizable(false);
 		pack();
 	}
 	
-	private void initGUI() {
-		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][]20[]");
-		setLayout(layout);
-		
-		if(clanBiblioteke != null) {
-			txtID.setEnabled(false);
-			popuniPolja();
-		}
+	public void initGUI() {
+		MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10[]");
+		setLayout(mig);
 		
 		add(lblID);
 		add(txtID);
@@ -105,7 +96,7 @@ public class ClanoviBibliotekeForma extends JFrame {
 		add(lblTipClanarine);
 		add(comboBoxTipClanarine);
 		add(new JLabel());
-		add(btnOK, "split 2");
+		add(btnOk, "split 2");
 		add(btnCancel);
 		
 		grupa.add(radiobuttonMuski);
@@ -114,9 +105,8 @@ public class ClanoviBibliotekeForma extends JFrame {
 		
 	}
 	
-	private void initActions() {
-		
-		btnOK.addActionListener(new ActionListener() {
+	public void initActions() {
+		btnOk.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -143,8 +133,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 						clanBiblioteke = new ClanBiblioteke(id, ime, prezime, jmbg, adresa, pol, brojClanskeKarte, datumPoslednjeUplate, unapredUplacenoMeseci, jeAktivan, tipClanarine, false);
 						
 						biblioteka.dodajClanaBiblioteke(clanBiblioteke);
-						Object[] red = kreirajRedTabele(clanBiblioteke);
-						tableModel.addRow(red);
 					} else {
 						clanBiblioteke.setIme(ime);
 						clanBiblioteke.setPrezime(prezime);
@@ -153,19 +141,16 @@ public class ClanoviBibliotekeForma extends JFrame {
 						clanBiblioteke.setPol(pol);
 						clanBiblioteke.setBrojClanskeKarte(brojClanskeKarte);
 						clanBiblioteke.setDatumPoslednjeUplate(datumPoslednjeUplate);
+						clanBiblioteke.setUnapredUplacenoMeseci(unapredUplacenoMeseci);
+						clanBiblioteke.setJeAktivan(jeAktivan);
 						clanBiblioteke.setTipClanarine(tipClanarine);
-						
-						int red = clanoviBibliotekeTabela.getSelectedRow();
-						refresh(red, clanBiblioteke);
 					}
 					
 					biblioteka.snimiClanoveBiblioteke(BibliotekaMain.CLANOVI_BIBLIOTEKE_FAJL);
-					clanoviBibliotekeTabela.clearSelection();
-					ClanoviBibliotekeForma.this.dispose();
-					ClanoviBibliotekeForma.this.setVisible(false);
+					Registracija.this.dispose();
+					Registracija.this.setVisible(false);
 					
 				}
-				
 			}
 		});
 		
@@ -173,13 +158,13 @@ public class ClanoviBibliotekeForma extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ClanoviBibliotekeForma.this.dispose();
-				ClanoviBibliotekeForma.this.setVisible(false);
+
+				Registracija.this.dispose();
+				Registracija.this.setVisible(false);
 				
 			}
 		});
 	}
-	
 	private boolean validacija() {
 		boolean ok = true;
 		String poruka = "Molimo popravite greske u unosu:\n";
@@ -209,7 +194,8 @@ public class ClanoviBibliotekeForma extends JFrame {
 		if(txtJMBG.getText().trim().equals("")) {
 			poruka += "- Morate uneti JMBG\n";
 			ok = false;
-		} else if(txtJMBG.getText().trim().length() != 13) {
+		}
+		else if(txtJMBG.getText().trim().length() != 13) {
 			poruka += "- JMBG mora sadrzati 13 cifara\n";
 			ok = false;
 		}
@@ -226,74 +212,11 @@ public class ClanoviBibliotekeForma extends JFrame {
 		
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "Uspesno ste se registrovali", "Uspesna registracija", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		return ok;
 	}
-	
-	
-	private void popuniPolja() {
-		txtID.setText(String.valueOf(clanBiblioteke.getId()));
-		txtIme.setText(clanBiblioteke.getIme());
-		txtPrezime.setText(clanBiblioteke.getPrezime());
-		txtJMBG.setText(clanBiblioteke.getJMBG());
-		txtAdresa.setText(clanBiblioteke.getAdresa());
-		if (clanBiblioteke.getPol().equals(Pol.MUSKI)) {
-			radiobuttonMuski.setSelected(true);
-		}
-		else {
-			radiobuttonZenski.setSelected(true);
-		}
-		txtBrojClanskeKarte.setText(clanBiblioteke.getBrojClanskeKarte());
-		comboBoxTipClanarine.setSelectedItem(clanBiblioteke.getTipClanarine());
-		
-	}
-	
-	private Object[] kreirajRedTabele(ClanBiblioteke clanBiblioteke) {
-		Object[] red = new Object[11];
-		
-		red[0] = clanBiblioteke.getId();
-		red[1] = clanBiblioteke.getIme();
-		red[2] = clanBiblioteke.getPrezime();
-		red[3] = clanBiblioteke.getJMBG();
-		red[4] = clanBiblioteke.getAdresa();
-		red[5] = clanBiblioteke.getPol();
-		red[6] = clanBiblioteke.getBrojClanskeKarte();
-		if(clanBiblioteke.getDatumPoslednjeUplate().equals(LocalDate.parse("1111-11-11"))) {
-			red[7] = "/";
-		} else {
-			red[7] = clanBiblioteke.getDatumPoslednjeUplate();
-		}
-		red[8] = clanBiblioteke.getUnapredUplacenoMeseci();
-		if (clanBiblioteke.isJeAktivan()) {
-			red[9] = "Da";
-		} else {
-			red[9] = "Ne";
-		}
-		red[10] = clanBiblioteke.getTipClanarine().getNaziv();
-		return red;
-	}
-	private void refresh(int red, ClanBiblioteke clanBiblioteke) {
-		if(red >= 0) {
-			tableModel.setValueAt(clanBiblioteke.getId(), red, 0);
-			tableModel.setValueAt(clanBiblioteke.getIme(), red, 1);
-			tableModel.setValueAt(clanBiblioteke.getPrezime(), red, 2);
-			tableModel.setValueAt(clanBiblioteke.getJMBG(), red, 3);
-			tableModel.setValueAt(clanBiblioteke.getAdresa(), red, 4);
-			tableModel.setValueAt(clanBiblioteke.getPol(), red, 5);
-			tableModel.setValueAt(clanBiblioteke.getBrojClanskeKarte(), red, 6);
-			if(clanBiblioteke.getDatumPoslednjeUplate().equals(LocalDate.parse("1111-11-11"))) {
-				tableModel.setValueAt("/", red, 7);
-			} else {
-				tableModel.setValueAt(clanBiblioteke.getDatumPoslednjeUplate(), red, 7);
-			}
-			tableModel.setValueAt(clanBiblioteke.getUnapredUplacenoMeseci(), red, 8);
-			if(clanBiblioteke.isJeAktivan()) {
-				tableModel.setValueAt("Da", red, 9);
-			} else {
-				tableModel.setValueAt("Ne", red, 9);
-			}
-			tableModel.setValueAt(clanBiblioteke.getTipClanarine().getNaziv(), red, 10);
-		}
-	}
 }
+	
