@@ -213,6 +213,11 @@ public class BibliotekariForma extends JFrame {
 			ok = false;
 		}
 		
+		if(!radiobuttonMuski.isSelected() && !radiobuttonZenski.isSelected()) {
+			poruka += "- Morate izabrati pol\n";
+			ok = false;
+		}
+		
 		try {
 			Double.parseDouble(txtPlata.getText().trim());
 		}

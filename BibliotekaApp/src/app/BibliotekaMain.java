@@ -1,6 +1,5 @@
 package app;
 
-import gui.Login;
 import gui.PocetniProzor;
 
 
@@ -30,6 +29,16 @@ public class BibliotekaMain {
 		
 		PocetniProzor pp = new PocetniProzor(biblioteka);
 		pp.setVisible(true);
+		
+		biblioteka.snimiZanrove(ZANROVI_FAJL);
+		biblioteka.snimiKnjige(KNJIGE_FAJL);
+		biblioteka.snimiPrimerkeKnjige(PRIMERCI_KNJIGE_FAJL);
+		biblioteka.snimiAdministratore(ADMINISTRATORI_FAJL);
+		biblioteka.snimiBibliotekare(BIBLIOTEKARI_FAJL);
+		biblioteka.snimiTipClanarine(TIPOVI_CLANARINE_FAJL);
+		biblioteka.snimiClanoveBiblioteke(CLANOVI_BIBLIOTEKE_FAJL);
+		biblioteka.snimiIznajmljivanja(IZNAJMLJIVANJE_FAJL);
+		biblioteka.snimiBiblioteku(BIBLIOTEKA_FAJL);
 	}
 
 }

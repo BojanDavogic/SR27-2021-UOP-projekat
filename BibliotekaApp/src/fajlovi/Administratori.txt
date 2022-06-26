@@ -1,3 +1,4 @@
+1|Mitar|Miric|2311964583402|Bulevar oslobodjenja 112|MUSKI|85000.0|MitarMiric|mitar123|false
 999|Ivan|Ivanovic|1905998123456|Test testova|MUSKI|55000.0|IvanIvanovic|ivanivanovic123|true
 988|Marko|Matkovic|1234567891555|Kralja Petra I 23|MUSKI|68000.0|MarkoMatkovic|marko1233|false
 989|Marija|Ivanovic|1234467891555|Rumenacka 35|ZENSKI|72000.0|MarijaIvanovic|marija12331|false

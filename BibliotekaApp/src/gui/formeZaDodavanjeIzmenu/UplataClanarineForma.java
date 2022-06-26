@@ -59,7 +59,7 @@ public class UplataClanarineForma extends JFrame implements ChangeListener {
 		this.tableModel = tableModel;
 		this.clanoviBibliotekeTabela = clanoviBibliotekeTabela;
 		
-		model = new SpinnerNumberModel(0, 0, 12, 1);
+		model = new SpinnerNumberModel(0, 0, 24, 1);
 		
 		brojMeseciZaUplatu = new JSpinner(model);
 		
@@ -119,8 +119,7 @@ public class UplataClanarineForma extends JFrame implements ChangeListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(validacija()) {
-					int id = Integer.parseInt(txtID.getText().trim());		
+				if(validacija()) {		
 					String ime = txtIme.getText().trim();
 					String prezime = txtPrezime.getText().trim();
 					LocalDate datumPoslednjeUplate = LocalDate.now();
@@ -143,6 +142,7 @@ public class UplataClanarineForma extends JFrame implements ChangeListener {
 				
 					biblioteka.snimiClanoveBiblioteke(BibliotekaMain.CLANOVI_BIBLIOTEKE_FAJL);
 					clanoviBibliotekeTabela.clearSelection();
+					JOptionPane.showMessageDialog(null, "Uspesno ste uplatili clanarinu clanu:\n" + clanBiblioteke.getIme() + " " + clanBiblioteke.getPrezime(), "Uspesna uplata clanarine", JOptionPane.INFORMATION_MESSAGE);
 					UplataClanarineForma.this.dispose();
 					UplataClanarineForma.this.setVisible(false);
 					
@@ -206,29 +206,19 @@ public class UplataClanarineForma extends JFrame implements ChangeListener {
 	}
 	
 	public void izracunajPopust() {
-		int meseci = (int) brojMeseciZaUplatu.getValue();
+		int brojMeseci = (int) brojMeseciZaUplatu.getValue();
 		double popust = 1;
-		int popustInt = 0;
-		if(meseci >= 12) {
-			popustInt = 2;
-			popust = 0.8;
-		} else if(meseci >= 6) {
-			popustInt = 1;
-			popust = 0.9;
-		}
-		
-		switch(popustInt) {
-		case 1:
+		if(brojMeseci >= 6 && brojMeseci < 12) {
+			popust = 10;
 			txtPopust.setText("10%");
-			break;
-		case 2:
+		} else if(brojMeseci >= 12) {
+			popust = 20;
 			txtPopust.setText("20%");
-			break;
-		default:
+		} else {
 			txtPopust.setText("0%");
 		}
-		
-		double ukupnaCena = meseci * Double.parseDouble(txtCena.getText()) * popust;
+
+		double ukupnaCena = ((Double.parseDouble(txtCena.getText()) * brojMeseci) / 100) * (100 - popust) ;
 		txtUkupno.setText(Double.toString(ukupnaCena));
 	}
 	

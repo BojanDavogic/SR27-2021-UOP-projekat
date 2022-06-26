@@ -49,7 +49,6 @@ public class IznajmljivanjaForma extends JFrame {
 	private BibliotekaApp biblioteka;
 	private DefaultTableModel tableModel;
 	private JTable iznajmljivanjeTabela;
-	private PrimerakKnjige primerakKnjige;
 	
 	
 	public IznajmljivanjaForma(BibliotekaApp biblioteka, Iznajmljivanje iznajmljivanje, DefaultTableModel tableModel, JTable iznajmljivanjeTabela) {
@@ -65,7 +64,7 @@ public class IznajmljivanjaForma extends JFrame {
 		Collection<Zaposleni> zaposleni = biblioteka.sviNeobrisaniZaposleni().values();
 		this.comboBoxZaposleni = new JComboBox<Zaposleni>(zaposleni.toArray(new Zaposleni[0]));
 		
-		Collection<ClanBiblioteke> clanovi = biblioteka.sviNeobrisaniClanoviBiblioteke().values();
+		Collection<ClanBiblioteke> clanovi = biblioteka.sviAktivniClanoviBiblioteke().values();
 		this.comboBoxClanBiblioteke = new JComboBox<ClanBiblioteke>(clanovi.toArray(new ClanBiblioteke[0]));
 		
 		if(iznajmljivanje == null) {

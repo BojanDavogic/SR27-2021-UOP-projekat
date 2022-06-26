@@ -100,17 +100,6 @@ public class ClanoviBibliotekeProzor extends JFrame {
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
 		clanoviBibliotekeTabela = new JTable(tableModel);
 		
-		clanoviBibliotekeTabela.getColumnModel().getColumn(0).setPreferredWidth(5);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(1).setPreferredWidth(20);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(2).setPreferredWidth(30);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(3).setPreferredWidth(60);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(4).setPreferredWidth(100);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(5).setPreferredWidth(15);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(7).setPreferredWidth(100);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(8).setPreferredWidth(110);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(9).setPreferredWidth(15);
-		clanoviBibliotekeTabela.getColumnModel().getColumn(10).setPreferredWidth(130);
-		
 		clanoviBibliotekeTabela.setRowSelectionAllowed(true);
 		clanoviBibliotekeTabela.setColumnSelectionAllowed(false);
 		clanoviBibliotekeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

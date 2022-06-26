@@ -1,14 +1,12 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,17 +14,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import app.BibliotekaApp;
 import app.BibliotekaMain;
-import gui.formeZaDodavanjeIzmenu.ClanoviBibliotekeForma;
 import model.ClanBiblioteke;
 import model.Pol;
 import model.TipClanarine;
-import model.Zaposleni;
 import net.miginfocom.swing.MigLayout;
 
 public class Registracija extends JFrame {
@@ -45,8 +40,6 @@ public class Registracija extends JFrame {
 	private JRadioButton radiobuttonMuski = new JRadioButton("MUSKI");
 	private JRadioButton radiobuttonZenski = new JRadioButton("ZENSKI");
 	private ButtonGroup grupa = new ButtonGroup();
-	private JLabel lblBrojClanskeKarte = new JLabel("Broj clanske karte");
-	private JTextField txtBrojClanskeKarte = new JTextField(20);
 	private JLabel lblTipClanarine = new JLabel("Tip clanarine");
 	private JComboBox<TipClanarine> comboBoxTipClanarine;
 	private JButton btnOk = new JButton("OK");
@@ -91,8 +84,6 @@ public class Registracija extends JFrame {
 		add(lblPol);
 		add(radiobuttonMuski, "split 2");
 		add(radiobuttonZenski);
-		add(lblBrojClanskeKarte);
-		add(txtBrojClanskeKarte);
 		add(lblTipClanarine);
 		add(comboBoxTipClanarine);
 		add(new JLabel());
@@ -120,7 +111,7 @@ public class Registracija extends JFrame {
 					if (radiobuttonZenski.isSelected()) {
 						pol = Pol.ZENSKI;
 					}
-					String brojClanskeKarte = txtBrojClanskeKarte.getText().trim();
+					String brojClanskeKarte = "";
 					LocalDate datumPoslednjeUplate = LocalDate.parse("1111-11-11");
 					int unapredUplacenoMeseci = 0;
 					boolean jeAktivan = false;
@@ -202,11 +193,6 @@ public class Registracija extends JFrame {
 		
 		if(txtAdresa.getText().trim().equals("")) {
 			poruka += "- Morate uneti adresu\n";
-			ok = false;
-		}
-		
-		if(txtBrojClanskeKarte.getText().trim().equals("")) {
-			poruka += "- Morate uneti broj clanske karte\n";
 			ok = false;
 		}
 		

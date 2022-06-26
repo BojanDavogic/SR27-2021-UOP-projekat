@@ -1,3 +1,4 @@
+1|Andjela|Andjelic|3001999892352|Kralja Petra I 15|ZENSKI|60000.0|AndjelaAndjelic|andjela123|false
 998|Milos|Milosevic|1234567894321|Branka Copica 12|MUSKI|60000.0|MilosMilosevic|milos123|false
 700|Tanja|Tankosic|1234567894333|Pariske komune 7|ZENSKI|62000.0|TanjaTankosic|tanja123|false
 365|Milan|Milakovic|0606999123456|Karadjordjeva 5|MUSKI|50000.0|MilanMilakovic|milan123|false

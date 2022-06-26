@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,8 +40,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 	private JRadioButton radiobuttonMuski = new JRadioButton("MUSKI");
 	private JRadioButton radiobuttonZenski = new JRadioButton("ZENSKI");
 	private ButtonGroup grupa = new ButtonGroup();
-	private JLabel lblBrojClanskeKarte = new JLabel("Broj clanske karte");
-	private JTextField txtBrojClanskeKarte = new JTextField(20);
 	
 	private JLabel lblTipClanarine = new JLabel("Tip clanarine");
 	private JComboBox<TipClanarine> comboBoxTipClanarine;
@@ -100,8 +97,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 		add(lblPol);
 		add(radiobuttonMuski, "split 2");
 		add(radiobuttonZenski);
-		add(lblBrojClanskeKarte);
-		add(txtBrojClanskeKarte);
 		add(lblTipClanarine);
 		add(comboBoxTipClanarine);
 		add(new JLabel());
@@ -110,7 +105,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 		
 		grupa.add(radiobuttonMuski);
 		grupa.add(radiobuttonZenski);
-		radiobuttonMuski.setSelected(true);
 		
 	}
 	
@@ -130,7 +124,7 @@ public class ClanoviBibliotekeForma extends JFrame {
 					if (radiobuttonZenski.isSelected()) {
 						pol = Pol.ZENSKI;
 					}
-					String brojClanskeKarte = txtBrojClanskeKarte.getText().trim();
+					String brojClanskeKarte = "";
 					LocalDate datumPoslednjeUplate = LocalDate.parse("1111-11-11");
 					int unapredUplacenoMeseci = 0;
 					boolean jeAktivan = false;
@@ -151,7 +145,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 						clanBiblioteke.setJMBG(jmbg);
 						clanBiblioteke.setAdresa(adresa);
 						clanBiblioteke.setPol(pol);
-						clanBiblioteke.setBrojClanskeKarte(brojClanskeKarte);
 						clanBiblioteke.setDatumPoslednjeUplate(datumPoslednjeUplate);
 						clanBiblioteke.setTipClanarine(tipClanarine);
 						
@@ -219,8 +212,8 @@ public class ClanoviBibliotekeForma extends JFrame {
 			ok = false;
 		}
 		
-		if(txtBrojClanskeKarte.getText().trim().equals("")) {
-			poruka += "- Morate uneti broj clanske karte\n";
+		if(!radiobuttonMuski.isSelected() && !radiobuttonZenski.isSelected()) {
+			poruka += "- Morate izabrati pol\n";
 			ok = false;
 		}
 		
@@ -244,7 +237,6 @@ public class ClanoviBibliotekeForma extends JFrame {
 		else {
 			radiobuttonZenski.setSelected(true);
 		}
-		txtBrojClanskeKarte.setText(clanBiblioteke.getBrojClanskeKarte());
 		comboBoxTipClanarine.setSelectedItem(clanBiblioteke.getTipClanarine());
 		
 	}

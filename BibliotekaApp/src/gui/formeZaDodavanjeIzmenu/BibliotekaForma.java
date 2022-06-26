@@ -2,24 +2,16 @@ package gui.formeZaDodavanjeIzmenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
 import app.BibliotekaMain;
 import model.Biblioteka;
-import model.Bibliotekar;
-import model.ClanBiblioteke;
-import model.Pol;
-import model.TipClanarine;
 import net.miginfocom.swing.MigLayout;
 
 public class BibliotekaForma extends JFrame {
@@ -85,7 +77,6 @@ public class BibliotekaForma extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(validacija()) {
-					int id = Integer.parseInt(txtID.getText().trim());		
 					String naziv = txtNaziv.getText().trim();
 					String adresa = txtAdresa.getText().trim();
 					String telefon = txtTelefon.getText().trim();

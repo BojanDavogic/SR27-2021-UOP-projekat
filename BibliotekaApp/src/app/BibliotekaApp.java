@@ -178,6 +178,16 @@ public class BibliotekaApp {
 		return neobrisaniClanoviBiblioteke;
 	}
 	
+	public HashMap<Integer, ClanBiblioteke> sviAktivniClanoviBiblioteke() {
+		HashMap<Integer, ClanBiblioteke> aktivniClanoviBiblioteke = new HashMap<Integer, ClanBiblioteke>();
+		for(ClanBiblioteke clan : sviNeobrisaniClanoviBiblioteke().values()) {
+			if(clan.isJeAktivan()) {
+				aktivniClanoviBiblioteke.put(clan.getId(), clan);
+			}
+		}
+		return aktivniClanoviBiblioteke;
+	}
+	
 	public HashMap<Integer, Iznajmljivanje> svaNeobrisanaIznajmljivanja() {
 		HashMap<Integer, Iznajmljivanje> neobrisanaIznajmljivanja = new HashMap<Integer, Iznajmljivanje>();
 		for(Iznajmljivanje iznajmljivanje : iznajmljivanja.values()) {
@@ -215,15 +225,6 @@ public class BibliotekaApp {
 		}
 		return null;
 	}
-	
-//	public TipClanarine pronadjiTipClanarine(int id) {
-//		for (TipClanarine tipClanarine : tipoviClanarine.values()) {
-//			if(tipClanarine.getId() == id) {
-//				return tipClanarine;
-//			}
-//		}
-//		return null;
-//	}
 	
 	public TipClanarine pronadjiTipClanarine(int id) {
 		for (TipClanarine tipClanarine : sviNeobrisaniTipoviClanarine().values()) {
@@ -330,20 +331,6 @@ public class BibliotekaApp {
 			System.out.println("Greska prilikom snimanja knjiga.");
 		}
 	}
-	
-//	public void snimiKnjigu(String imeFajla, Knjiga knjiga) {		
-//		String sadrzaj = knjiga.getId() + "|" + knjiga.getNaslov() + "|" + knjiga.getOriginalniNaslov() + "|" + knjiga.getPisac() + "|"
-//			+ knjiga.getGodinaObjavljivanja() + "|" + knjiga.getOpis() + "|" + knjiga.getZanr().getId() + "|" + knjiga.getJezikOriginala() + "\n";		
-//
-//		try {
-//			File file = new File("src/fajlovi/Knjige.txt");
-//			BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-//			writer.append(sadrzaj);
-//			writer.close();
-//		} catch (IOException e) {
-//			System.out.println("Greska prilikom snimanja knjiga.");
-//		}
-//	}
 	
 	public void ucitajZanrove() {
 		try {
@@ -527,6 +514,9 @@ public class BibliotekaApp {
 				LocalDate datumPoslednjeUplate = LocalDate.parse(lineSplit[7]);
 				int unapredUplacenoMeseci = Integer.parseInt(lineSplit[8]);
 				boolean jeAktivan = Boolean.parseBoolean(lineSplit[9]);
+				if(datumPoslednjeUplate.plusMonths(unapredUplacenoMeseci).isBefore(LocalDate.now())) {
+					jeAktivan = false;
+				}
 				int tipClanarineId = Integer.valueOf(lineSplit[10]);
 				TipClanarine tipClanarine = this.tipoviClanarine.get(tipClanarineId);
 				boolean obrisan = Boolean.parseBoolean(lineSplit[11]);

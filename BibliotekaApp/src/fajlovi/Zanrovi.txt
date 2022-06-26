@@ -1,3 +1,4 @@
+1|Tragedija|Tragedija je dramska vrsta u stihovima koja se razvila u staroj Grckoj, postignuvsi najveci procvat u V stolecu pne.|false
 5|Bajka|Bajka je prica u kojoj su radnja i likovi izmisljeni.|false
 6|Novela|Novela je kratki i zatvoreni prozni oblik koji ima postojaniju strukturu od romana.|false
 7|Autobiografija|Autobiografija je biografija koja se pise u prvom licu.|false

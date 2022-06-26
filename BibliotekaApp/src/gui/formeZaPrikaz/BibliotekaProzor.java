@@ -1,33 +1,17 @@
 package gui.formeZaPrikaz;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
 
 import app.BibliotekaApp;
-import app.BibliotekaMain;
 import gui.formeZaDodavanjeIzmenu.BibliotekaForma;
-import gui.formeZaDodavanjeIzmenu.ClanoviBibliotekeForma;
-import gui.formeZaDodavanjeIzmenu.UplataClanarineForma;
 import model.Biblioteka;
-import model.ClanBiblioteke;
-import model.Knjiga;
-import model.Osoba;
-import model.PrimerakKnjige;
 import net.miginfocom.swing.MigLayout;
 
 public class BibliotekaProzor extends JFrame {
